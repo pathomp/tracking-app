@@ -3,6 +3,7 @@ import { GoogleApiWrapper } from 'google-maps-react'
 import MapContainer from './MapContainer'
 
 class Home extends Component {
+
     render() {
         return (
             <div>

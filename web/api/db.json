@@ -1,10 +1,23 @@
 {
-    "objects":[{
-        "createdAt": {"$date":"2018-06-04T20:00:30Z"},
-        "name": "3xs-3216",
-        "IMEI": "1000000"
-    }],
-    "data":[
+    "objects":[
+        {
+            "name": "3xs-3216",
+            "IMEI": "1000000",
+            "createdAt": {"$date":"2018-06-04T20:00:30Z"},
+            "object_data":    {
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        100.4340369,
+                        13.6416148
+                    ]
+                },
+                "ts": {"$date":"2018-06-04T20:05:00Z"},
+                "speed": "62"
+            }
+        }
+    ],
+    "data": [
         {
             "geometry": {
                 "type": "Point",
@@ -16,6 +29,130 @@
             "ts": {"$date":"2018-06-04T20:00:30Z"},
             "speed": "62",
             "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:01:00Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:01:30Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:02:00Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:02:30Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:03:00Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:03:30Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:04:00Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:04:30Z"},
+            "speed": "62",
+            "IMEI": "1000000"
+        },
+        {
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.4340369,
+                    13.6416148
+                ]
+            },
+            "ts": {"$date":"2018-06-04T20:05:00Z"},
+            "speed": "62",
+            "IMEI": "1000000"
         }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "name": "A",
+        "password": "1234",
+        "email": "A@mail.com",
+        "role": "user"
+      },
+      {
+        "id": 2,
+        "name": "B",
+        "password": "1234",
+        "email": "B@mail.com",
+        "role": "user"
+      }
     ]
-}
+  }

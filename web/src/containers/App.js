@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Router, Route, Redirect } from 'react-router-dom'
 
 import Header from '../components/Header'
 
+import Login from '../components/Login'
+import history from '../history'
 import Home from './Home'
 
 class App extends Component {
@@ -14,8 +16,8 @@ class App extends Component {
           <div className="hero-body">
             <div className="container">
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Redirect to="/" />
+              <Route path="/login" component={Login} />
+              <Route path="/" component={Home} />
             </Switch>
             </div>
           </div>

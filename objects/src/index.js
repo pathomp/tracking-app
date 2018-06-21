@@ -5,8 +5,8 @@ const repository = require('./repository/repository')
 const config = require('./config/')
 const mediator = new EventEmitter()
 
-console.log('--- Datas Service ---')
-console.log('Connecting to datas repository...')
+console.log('---Objects Service ---')
+console.log('Connecting to objects repository...')
 
 process.on('uncaughtException', (err) => {
   console.error('Unhandled Exception', err)
@@ -18,7 +18,7 @@ process.on('uncaughtRejection', (err, promise) => {
 
 mediator.on('db.ready', (db) => {
   let rep
-  repository.connect(db)
+  repository.connect({ db, ObjectID : config.ObjectID })
     .then(repo => {
       console.log('Connected. Starting Server')
       rep = repo

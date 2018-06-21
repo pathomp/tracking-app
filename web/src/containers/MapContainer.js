@@ -8,13 +8,27 @@ export default class MapContainer extends Component {
     }
   
     componentDidMount() {
-    
-      fetch('http://localhost:5000/api/v1/data')
-        .then((response) => response.json())
-        .then(json => {
-            this.setState({locations:json})
-            this.loadMap();
-        });
+      this.getLocation();
+    }
+
+    componentWillUnmount() {
+    }
+
+    getLocation = () => {
+      console.log(localStorage.getItem('token'))
+      fetch('http://192.168.99.100:8080/objects',{
+        method: 'GET',
+        headers:{
+          'content-type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      })
+      .then((response) => response.json())
+      .then(json => {
+          console.log(json)
+          this.setState({locations:json})
+          this.loadMap();
+      });
     }
   
     loadMap() {
@@ -35,7 +49,7 @@ export default class MapContainer extends Component {
 
         this.state.locations.forEach( location => { 
           new google.maps.Marker({ 
-            position: {lat: location.geometry.coordinates[1], lng: location.geometry.coordinates[0]}, 
+            position: {lat: location.object_data.geometry.coordinates[1], lng: location.object_data.geometry.coordinates[0]}, 
             map: this.map, 
         //     title: location.name // the title of the marker is set to the name of the location
           });

@@ -7,7 +7,7 @@ class Header extends Component {
         <nav className="navbar is-fixed-top is-transparent" aria-label="main navigation">
           <div className="container">
             <div className="navbar-brand">
-                <a className="navbar-item" href="">PIKACHU</a>
+                <a className="navbar-item" href="">VXXXN</a>
                 <div className="navbar-burger">
                   <span></span>
                   <span></span>

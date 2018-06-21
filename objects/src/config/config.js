@@ -1,28 +1,16 @@
 const dbSettings = {
-    db: process.env.DB || 'datas',
+    db: process.env.DB || 'tracking',
     user: process.env.DB_USER || 'pune',
     pass: process.env.DB_PASS || 'ABr4bEay',
     repl: process.env.DB_REPLS || 'rs1',
-    servers : 'mongodb://pune:ABr4bEay@192.168.99.100:27017,192.168.99.101:27017,192.168.99.102:27017/datas?replicaSet=rs1&authSource=admin',
-    dbParameters: () => ({
-        native_parser: true
-    }),
-    serverParameters: () => ({
-        poolSize: 5,
-        socketoptions: {
-            keepAlive: 300,
-            connectTimeoutMS: 30000,
-        }
-    }),
-    replsetParameters: (replset = 'rs1') => ({
-        replicaSet: replset,
-        auto_reconnect:false,
-        poolSize: 10,
-        socketoptions: {
-            keepAlive: 300,
-            connectTimeoutMS: 30000,
-        }
-    })
+    servers: (process.env.DB_SERVERS) ? process.env.DB_SERVERS.split(' ') : [
+        '209.97.162.212:27017',
+    ]
+}
+
+const jwtSetting = {
+    secretKey: process.env.SESSIONKEY || 'cat 4 dog',
+    expires_seconds: process.env.EXPIRATION_TIME || '60'
 }
 
 const serverSettings = {
@@ -30,4 +18,4 @@ const serverSettings = {
     ssl: require('./ssl')
 }
 
-module.exports = Object.assign({}, { dbSettings, serverSettings })
+module.exports = Object.assign({}, { dbSettings, jwtSetting, serverSettings })
