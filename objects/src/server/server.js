@@ -6,7 +6,7 @@ const bodyparser = require('body-parser')
 const cors = require('cors')
 const spdy = require('spdy')
 const api = require('../api/objects')
-const auth = require('./auth')
+const auth = require('../config/auth')
 
 const start = (options) => {
   return new Promise((resolve, reject) => {
@@ -21,14 +21,13 @@ const start = (options) => {
 
     const app = express()
     app.use(morgan('dev'))
-    app.use(bodyparser.urlencoded({ extended: true }))
     app.use(bodyparser.json())
     app.use(cors())
     app.use(helmet())
     app.use(auth.isAuthenticated)
     app.use((err, req, res, next) => {
-      // reject(new Error('Something went wrong!, err:' + err))
-      res.status(500).send('Something went wrong!, err:' + err)
+      reject(new Error('Something went wrong!, err:' + err))
+      res.status(500).send(err)
     })
     
     api(app, options)

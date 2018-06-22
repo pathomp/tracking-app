@@ -1,4 +1,6 @@
 'use strict'
+
+var fs = require('fs');
 const _ = require('lodash');
 const bcrypt = require('bcrypt')
 const status = require('http-status')

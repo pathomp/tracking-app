@@ -10,7 +10,6 @@ const dbSettings = {
 
 const jwtSetting = {
     secretKey: process.env.SESSIONKEY || 'cat 4 dog',
-    expires_seconds: process.env.EXPIRATION_TIME || '60'
 }
 
 const serverSettings = {
