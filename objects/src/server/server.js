@@ -1,9 +1,8 @@
 'use strict'
 const express = require('express')
-const morgan = require('morgan')
+const logger = require('morgan')
 const helmet = require('helmet')
 const bodyparser = require('body-parser')
-const cors = require('cors')
 const spdy = require('spdy')
 const api = require('../api/objects')
 const auth = require('../config/auth')
@@ -20,10 +19,10 @@ const start = (options) => {
     }
 
     const app = express()
-    app.use(morgan('dev'))
-    app.use(bodyparser.json())
-    app.use(cors())
     app.use(helmet())
+    app.use(logger('dev'))
+    app.use(bodyparser.urlencoded({extended: false}))
+    app.use(bodyparser.json())
     app.use(auth.isAuthenticated)
     app.use((err, req, res, next) => {
       reject(new Error('Something went wrong!, err:' + err))

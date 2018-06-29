@@ -7,10 +7,11 @@ module.exports = (app, options) => {
     
     app.post('/data/makeData', (req, res, next) => {
         const objectService = services.objectService
+        const illegalService = services.illegalService
         
         repo.makeData(req.body.data)
             .then(data => {
-                objectService(data)
+                illegalService(data.speed)
                 res.status(status.OK).json(data)
             }).catch(next)
     })

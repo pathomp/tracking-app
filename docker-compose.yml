@@ -12,17 +12,24 @@ services:
     environment:
       - DB_SERVERS=209.97.162.212:27017
 
-  objects:
-    build: './objects'
+  data:
+    build: './data'
     ports:
       - "3002:3000"
     environment:
       - DB_SERVERS=209.97.162.212:27017
   
-  data:
-    build: './data'
+  illegals:
+    build: './illegals'
     ports:
       - "3003:3000"
+    environment:
+      - DB_SERVERS=209.97.162.212:27017
+
+  objects:
+    build: './objects'
+    ports:
+      - "3004:3000"
     environment:
       - DB_SERVERS=209.97.162.212:27017
 
@@ -36,5 +43,6 @@ services:
     depends_on:
       - web
       - auth
-      - objects
       - data
+      - illegals
+      - objects
