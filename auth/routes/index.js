@@ -17,9 +17,10 @@ module.exports = (server) => {
        
         let data = req.body || {}
 
-        function createUser(data) {
+        async function createUser(data) {
+            let user
             try{
-                const user = User.create(data)
+                user = await User.create(data)
                 res.send(201, {"username" : user.username, "email" : user.email})
             } catch(err) {
                 console.error(err)
@@ -38,7 +39,7 @@ module.exports = (server) => {
         let data = req.body || {}
 
         async function authorization(data) {
-            let err, user, authenticate, token
+            let user, authenticate, token
             try{
 
                 user = await User.findOne({ email : data.email})
