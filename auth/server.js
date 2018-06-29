@@ -1,6 +1,7 @@
 const restify = require('restify')
 const mongoose = require('mongoose')
 const logger = require('morgan')
+const cors = require('cors')
 const config = require('./config') 
 
 const server = restify.createServer({
@@ -9,6 +10,7 @@ const server = restify.createServer({
 })
 
 server.use(logger('dev'))
+server.use(cors)
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
