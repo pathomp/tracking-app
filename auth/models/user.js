@@ -6,8 +6,10 @@ const jwt = require('jsonwebtoken');
 const config = require('../config')
 
 const UserSchema = new mongoose.Schema({
-    username: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
-    email: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
+    username: String,
+    email: String,
+    // username: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
+    // email: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
     hashedPassword: String
 })
 
@@ -21,19 +23,19 @@ UserSchema.virtual('password')
         return this.hashedPassword
     })
 
-UserSchema.methods.encryptPassword = (password) => {
+UserSchema.methods.encryptPassword = function(password) {
     return bcrypt.hashSync(password, 10);
 }
 
-UserSchema.methods.validPassword = (password) => {
-    return bcrypt.compareSync(password,this.password)
+UserSchema.methods.validPassword = function(password)  {
+    return bcrypt.compareSync(password,this.hashedPassword)
 }
 
-UserSchema.methods.generateJWT = () => {
+UserSchema.methods.generateJWT = function() {
     return jwt.sign({
         username: this.username,
         email: this.email   
     }, config.tokenSettings.privateKey, { expiresIn: config.tokenSettings.tokenExpiry })
 }
 
-module.exports = mongoose.model('user', UserSchema)
+module.exports = mongoose.model('users', UserSchema)

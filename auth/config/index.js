@@ -10,7 +10,7 @@ module.exports = {
         db: process.env.DB || 'tracking',
         server: process.env.DB_SERVER || '209.97.162.212:27017',
         get url (){
-            return `mongodb://${this.server}`
+            return `mongodb://${this.server}/${this.db}`
         }
     },
     tokenSettings: {
