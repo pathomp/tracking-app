@@ -1,17 +1,13 @@
 const mongoose = require('mongoose')
 // const uniqueValidator = require('mongoose-unique-validator');
-// const bcrypt = require('bcrypt')
-// const jwt = require('jsonwebtoken');
 
 const config = require('../config')
 
-const drivertimeschema = new mongoose.Schema({
-    // username: String,
-    // email: String,
-    // gps_id : String,
-    gps_time : String,
-    driver_lic : String
+const DataSchema = new mongoose.Schema({
+        driver_lic : String,
+        gps_time : String
+},{ collection: 'illegals_drivetimes'})
 
-})
+// DataSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 
-module.exports = mongoose.model('illegals_drivetime', drivertimeschema)
+module.exports = mongoose.model('illegals_drivetimes', DataSchema)
