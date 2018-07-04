@@ -8,6 +8,7 @@ module.exports = (server) => {
             "create_user" : "/auth/register : {username,email,password}",
             "authentication": "/auth/basic : {email,password}"
         })
+        next()
     })
 
     server.post('/auth/register', (req, res, next) => {

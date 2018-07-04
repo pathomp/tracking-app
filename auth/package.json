@@ -20,6 +20,7 @@
     "mongoose-unique-validator": "^2.0.1",
     "morgan": "^1.9.0",
     "restify": "^7.2.1",
+    "restify-cors-middleware": "^1.1.1",
     "restify-errors": "^6.1.1"
   },
   "devDependencies": {

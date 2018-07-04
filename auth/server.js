@@ -1,6 +1,7 @@
 const restify = require('restify')
 const mongoose = require('mongoose')
 const logger = require('morgan')
+const corsMiddleware = require('restify-cors-middleware')
 const config = require('./config') 
 
 const server = restify.createServer({
@@ -8,7 +9,15 @@ const server = restify.createServer({
     version: config.version
 })
 
+const cors = corsMiddleware({
+    // preflightMaxAge: 5,
+    origins: ['*'],
+    allowHeaders: ['Content-Type','Content-Length','Authorization'],
+})
+
 server.use(logger('dev'))
+server.pre(cors.preflight)
+server.use(cors.actual)
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());

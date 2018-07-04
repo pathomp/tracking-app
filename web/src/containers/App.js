@@ -3,10 +3,10 @@ import { Switch, Router, Route, Redirect } from 'react-router-dom'
 
 import Header from '../components/Header'
 
-import Login from '../components/Login'
 import history from '../history'
 import Home from './Home'
 import HomeHeader from './../components/HomeHeader';
+import Register from './../components/register';
 
 class App extends Component {
   render() {
@@ -26,7 +26,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={HomeHeader}/>
                 <div style={box}>
-                  <Route path="/login" component={Login} />
+                  <Route path="/register" component={Register} />
                   <Route path="/home" component={Home} />
                 </div>
               </Switch>
