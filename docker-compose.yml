@@ -10,28 +10,16 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - DB_SERVERS=209.97.162.212:27017
+      - NODE_ENV=Production
+      - DB_SERVER=209.97.162.212:27017
 
   data:
     build: './data'
     ports:
       - "3002:3000"
     environment:
-      - DB_SERVERS=209.97.162.212:27017
-  
-  illegals:
-    build: './illegals'
-    ports:
-      - "3003:3000"
-    environment:
-      - DB_SERVERS=209.97.162.212:27017
-
-  objects:
-    build: './objects'
-    ports:
-      - "3004:3000"
-    environment:
-      - DB_SERVERS=209.97.162.212:27017
+      - NODE_ENV=Production
+      - DB_SERVER=209.97.162.212:27017
 
   nginx:
     image: nginx:latest
@@ -44,5 +32,3 @@ services:
       - web
       - auth
       - data
-      - illegals
-      - objects
