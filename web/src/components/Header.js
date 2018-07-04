@@ -42,17 +42,17 @@ class Header extends Component {
                   <strong>TRACKING</strong> 
                 </a>
               </div>
-              {
+              {/* {
                 !localStorage.getItem('token') && (
                   <div className="right menu">
                       <div className="item">
-                        <a className="ui blue button" href="/login">
-                          Sign In
+                        <a className="ui secondary button" href="/register">
+                          Sign Up
                         </a>
                       </div>
                   </div>
                 )
-              }
+              } */}
               {
                 localStorage.getItem('token') && (
                   <div className="right menu">
