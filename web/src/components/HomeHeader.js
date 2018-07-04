@@ -11,8 +11,7 @@ export default class HomeHeader extends Component{
     }
     render(){
         const box = {
-            marginTop: "2%",
-            // marginBottom: "%", //3.7vh
+            marginTop: "2%"
           }
 
           const styleleft ={
