@@ -6,22 +6,32 @@ import Header from '../components/Header'
 import Login from '../components/Login'
 import history from '../history'
 import Home from './Home'
+import HomeHeader from './../components/HomeHeader';
 
 class App extends Component {
   render() {
+    const box = {
+      marginTop: "2.5rem"
+    }
+    
+    const style = {
+      "backgroundColor": "#ebebe0",
+      "height": "100vh"
+  }
     return (
-      <div>
+      <div style={style}>
         <Header />
-        <section className="section">
-          <div className="hero-body">
-            <div className="container">
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/" component={Home} />
-            </Switch>
+         <section >
+            <div>
+              <Switch>
+                <Route exact path="/" component={HomeHeader}/>
+                <div style={box}>
+                  <Route path="/login" component={Login} />
+                  <Route path="/home" component={Home} />
+                </div>
+              </Switch>
             </div>
-          </div>
-        </section>
+          </section> 
       </div>
     )
   }

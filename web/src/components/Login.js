@@ -27,8 +27,8 @@ class Login extends Component {
             var encodedValue = encodeURIComponent(details[property]);
             formBody.push(encodedKey + "=" + encodedValue);
         }
-        formBody = formBody.join("&");
-        fetch('http://192.168.99.100:3001/users/login',{
+        formBody = formBody.join("&"); //http://localhost:5000/api/v1/users  http://10.195.2.131/auth/basic
+        fetch('http://localhost:5000/api/v1/users',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -48,54 +48,39 @@ class Login extends Component {
 
     render(){
         return(
-        <div className="columns">
-            <div className="column is-two-fifths is-offset-one-quarter">
-                <div className="tile is-ancestor">
-                    <div className="tile is-vertical is-12">
-                        <div className="tile">
-                            <div className="tile is-parent is-vertical">
-                                <div className="box">
-                                    <p className="title">Sign In</p>
-                                        <div className="field">
-                                            <label className="label">Email:</label>
-                                            <p className="control has-icons-left has-icons-right">
-                                                <input name="email" type="email" className="input is-info" 
-                                                    placeholder="youremail@email.com" onChange={this.handlechange} />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fas fa-envelope"></i>
-                                                </span>
-                                                <span className="icon is-small is-right">
-                                                    <i className="fas fa-check"></i>
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div className="field">
-                                            <label className="label">Password:</label>
-                                            <p className="control has-icons-left">
-                                                <input name="password" type="password" className="input is-info" 
-                                                    placeholder="Password" onChange={this.handlechange}/> 
-                                                <span className="icon is-small is-left">
-                                                    <i className="fas fa-lock"></i>
-                                                </span>
-                                            </p>
-                                        </div> 
-                                        <div className="field">
-                                            <p className="control">
-                                                <span className="level-item has-text-centered level-right">
-                                                    <br/><br/>
-                                                    <a to="/home" className="button is-info" type="button" onClick={this.handlesubmit}>
-                                                        Sign in
-                                                    </a>
-                                                </span>
-                                            </p>
-                                        </div>
+            <div className="ui middle aligned center aligned grid"> 
+                <div className="ui three column centered grid">
+                    <div className="column">                        
+                        <form className="ui large form">
+                            <div className="ui stacked segment">
+                                <h1 className="ui teal header">
+                                    <div className="content">
+                                        Sign In
+                                    </div>
+                                </h1>
+                                <div className="field">
+                                    <label className="ui left aligned header">Email</label>
+                                    <div className="ui left icon input">
+                                        <i className="user icon"></i>
+                                        <input name="email" type="email" className="input is-info" 
+                                            placeholder="E-mail address" onChange={this.handlechange} />
                                     </div>
                                 </div>
+                                <div className="field">
+                                    <label className="ui left aligned header">Password</label>
+                                    <div className="ui left icon input">
+                                        <i className="lock icon"></i>
+                                        <input name="password" type="password" className="input is-info" 
+                                            placeholder="Password" onChange={this.handlechange}/>
+                                    </div>
+                                </div>
+                                <div className="ui fluid large teal submit button"  to="/home" onClick={this.handlesubmit}>Login</div>
                             </div>
-                        </div>
+                            <div className="ui error message"></div>
+                        </form>
                     </div>
-                </div>
-            </div>
+                </div>  
+            </div>   
         )
     }
 }
