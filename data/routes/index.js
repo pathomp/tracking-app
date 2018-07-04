@@ -19,6 +19,7 @@ module.exports = (server) => {
             let datum
             try{
                 datum = await Data.findOne({'imei':imei})
+                console.log(datum)
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)

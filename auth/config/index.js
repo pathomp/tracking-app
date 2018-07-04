@@ -8,7 +8,7 @@ module.exports = {
     },
     dbSettings: {
         db: process.env.DB || 'tracking',
-        server: process.env.DB_SERVER || '127.0.0.1:27017',
+        server: process.env.DB_SERVER || '209.97.162.212:27017',
         get url (){
             return `mongodb://${this.server}/${this.db}`
         }

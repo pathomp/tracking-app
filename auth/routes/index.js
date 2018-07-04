@@ -43,6 +43,7 @@ module.exports = (server) => {
             try{
 
                 user = await User.findOne({ email : data.email})
+                console.log(user)
                 if(!user) return res.send(403, {"message": "Email not found"})
 
                 authenticate = await user.validPassword(data.password)
