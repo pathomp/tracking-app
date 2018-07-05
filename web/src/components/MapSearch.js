@@ -55,6 +55,10 @@ class MapSearch extends Component {
             "overflowY": "scroll"
         }
 
+        const cursor = {
+            cursor: "pointer"
+        }
+
         let day = { style:
             {   
                 width: "100%" , 
@@ -78,7 +82,7 @@ class MapSearch extends Component {
         return (       
             <div>
                 <Tabs defaultIndex={0} onSelect={tabindex => this.setState({tabindex})}>
-                    <TabList className="ui two tiny item menu">
+                    <TabList className="ui two tiny item menu" style={cursor}>
                         <Tab className={this.state.tabindex.valueOf(1)? "item":"active item"}><a className="ui tiny blue header">Object</a></Tab>
                         <Tab className={this.state.tabindex.valueOf(1)? "active item":"item"}><a className="ui tiny blue header">History</a></Tab>                        
                     </TabList>

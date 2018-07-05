@@ -14,6 +14,10 @@ export default class HomeHeader extends Component{
             marginTop: "2%"
           }
 
+          const cursor = {
+            cursor: "pointer"
+          }
+
           const styleleft ={
             width: '30rem',
             height: '30rem',
@@ -55,9 +59,21 @@ export default class HomeHeader extends Component{
                                         <Register/>
                                     </div>
                                 </TabPanel>  
-                                <TabList className="ui two tiny item inverted menu">
-                                    <Tab className={this.state.tabindex.valueOf(1)? "item":"active item"}><a className="ui tiny inverted button">Login</a></Tab>
-                                    <Tab className={this.state.tabindex.valueOf(1)? "active item":"item"}><a className="ui tiny inverted button">Sign Up</a></Tab>
+                                <TabList className="ui center aligned tiny header">
+                                    <Tab>
+                                    {
+                                        this.state.tabindex.valueOf(1) && (                                            
+                                            <a className="ui grey inverted centered tiny header" style={cursor}>Already have an account? <u>SIGN IN</u></a>
+                                        )
+                                    }
+                                    </Tab>
+                                    <Tab>
+                                    {
+                                        !this.state.tabindex.valueOf(1) && (
+                                            <a className="ui grey inverted tiny header" style={cursor}>Don't have an account? <u> SIGN UP</u></a>
+                                        )
+                                    }
+                                    </Tab>                                        
                                 </TabList>                                  
                             </Tabs>
                         </div>
