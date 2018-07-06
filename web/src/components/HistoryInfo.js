@@ -5,7 +5,8 @@ export default class HistoryInfo extends Component {
         super()
         this.state ={
             date : props.date,
-            data : []
+            data : [],
+            name : props.name
         }
     }
 
@@ -24,48 +25,62 @@ export default class HistoryInfo extends Component {
 
     componentWillReceiveProps = (props) =>{
         this.state.date = props.date
+        this.state.name = props.name
+
     }
 
     render() {
         const style = {
             width: "100%",
-            height: "53vh", //304pxs
+            height: "52.7vh", //304pxs
             "overflowY": "scroll"
-        }         
+        }       
         return (            
-            <div className="four wide column">
-                <div/>
+            <div className="four wide column"><h5/>
                 <h2 className="ui teal header"><strong>Information</strong></h2>
                 <div style={style} >
                     <table className="ui celled padded table">
                         <thead>
-                            <tr>
+                            <tr className="center aligned">
                                 <th>วันที่</th>
                                 <th>Speed</th>
                             </tr>
                         </thead>                                    
-                        <tbody>
+                        <tbody>                            
                             {this.state.data
                                 .sort((a,b)=>a.ts>b.ts)                        
-                                .map((data, i) => {
+                                .map((data,i) => {
                                     const dataDB = new Date(data.ts)
-                                    const dateState = new Date(this.state.date)
-                                    
-                                    if(dataDB.getDate()  === dateState.getDate()){
-                                        return (
-                                            <tr key={i}>
-                                                <td>{dataDB.getDate()}{"/"}{dataDB.getMonth()+1}{"/"}{dataDB.getFullYear()}</td>
-                                                <td>{data.speed}</td>                                                                             
-                                            </tr>                                                                       
-                                        )
+                                    if(this.state.date === null){
+                                        if(this.state.name === data.IMEI){
+                                            return (
+                                                <tr key={i} className="center aligned">
+                                                    <td>{dataDB.getDate()}{"/"}{dataDB.getMonth()+1}{"/"}{dataDB.getFullYear()}</td>
+                                                    <td>{data.speed}</td>                                                                             
+                                                </tr>                                                                                                                   
+                                            )
+                                        }
                                     }else{
-                                        return (
-                                            <tr key={i}>
-                                                <td>{dataDB.getDate()}{"/"}{dataDB.getMonth()+1}{"/"}{dataDB.getFullYear()}</td>
-                                                <td>{data.speed}</td>                                                                             
-                                            </tr>                                                                       
-                                        )
-                                    }                         
+                                        const dateState = new Date(this.state.date)
+                                        console.log(dateState) 
+                                        if(this.state.name === data.IMEI || this.state.name === null){
+                                            if(this.state.name === data.IMEI && (dataDB.getDate()  === dateState.getDate() && dateState.getMonth()+1 === dataDB.getMonth()+1)){                                                                                                                     
+                                                return (
+                                                    <tr key={i} className="center aligned">
+                                                        <td>{dataDB.getDate()}{"/"}{dataDB.getMonth()+1}{"/"}{dataDB.getFullYear()}</td>
+                                                        <td>{data.speed}</td>                                                                             
+                                                    </tr>                                                                                                                   
+                                                )
+                                            }else if(this.state.name === null && dataDB.getDate()  === dateState.getDate() && dateState.getMonth()+1 === dataDB.getMonth()+1){                                                                                                                     
+                                                return (
+                                                    <tr key={i} className="center aligned">
+                                                        <td>{dataDB.getDate()}{"/"}{dataDB.getMonth()+1}{"/"}{dataDB.getFullYear()}</td>
+                                                        <td>{data.speed}</td>                                                                             
+                                                    </tr>                                                                                                                   
+                                                )
+                                            }
+                                        }
+                                    }
                                 })
                             }
                         </tbody>

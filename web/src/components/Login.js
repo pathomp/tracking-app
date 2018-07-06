@@ -18,7 +18,7 @@ class Login extends Component {
         e.preventDefault()
 
         //http://localhost:5000/api/v1/users  http://10.195.2.131/auth/basic
-        fetch('http://192.168.99.100:8080/auth/basic',{
+        fetch('https://159.65.161.87:3000/auth/basic',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -41,40 +41,6 @@ class Login extends Component {
 
     render(){
         return(
-            // <div className="ui middle aligned center aligned grid"> 
-            //     <div className="ui three column centered grid">
-            //         <div className="column">                        
-            //             <form className="ui large form">
-            //                 <div className="ui stacked segment">
-            //                     <h1 className="ui teal header">
-            //                         <div className="content">
-            //                             Sign In
-            //                         </div>
-            //                     </h1>
-            //                     <div className="field">
-            //                         <label className="ui left aligned header">Email</label>
-            //                         <div className="ui left icon input">
-            //                             <i className="user icon"></i>
-            //                             <input name="email" type="email" className="input is-info" 
-            //                                 placeholder="E-mail address" onChange={this.handlechange} />
-            //                         </div>
-            //                     </div>
-            //                     <div className="field">
-            //                         <label className="ui left aligned header">Password</label>
-            //                         <div className="ui left icon input">
-            //                             <i className="lock icon"></i>
-            //                             <input name="password" type="password" className="input is-info" 
-            //                                 placeholder="Password" onChange={this.handlechange}/>
-            //                         </div>
-            //                     </div>
-            //                     <div className="ui fluid large teal submit button"  to="/home" onClick={this.handlesubmit}>Login</div>
-            //                 </div>
-            //                 <div className="ui error message"></div>
-            //             </form>
-            //         </div>
-            //     </div>  
-            // </div>   
-
             <div className="ui inverted segment">
             <div className="ui form ">
                 <h1 className="ui left aligned dividing inverted header">Sign In</h1>

@@ -20,7 +20,7 @@ export default class HomeHeader extends Component{
 
           const styleleft ={
             width: '30rem',
-            height: '30rem',
+            height: '20rem',
             paddingRight: "2rem",
             paddingLeft: "2rem",
             marginTop: "3rem"
@@ -28,12 +28,16 @@ export default class HomeHeader extends Component{
 
           const boxRight = {
             width: '30rem',
-            height: '30rem',
+            height: '20rem',
           }
 
           const background = {
             backgroundImage: `url(${image})`,
-            height:"93.5vh"
+            "position": "fixed", 
+            "top": "0",
+            "left": "0",
+            minWidth: "100%",
+            minHeight: "100%"
           }
         return(
             <div className="ui segment" style={background}>             
@@ -79,8 +83,7 @@ export default class HomeHeader extends Component{
                         </div>
                     </div>
                 </div>               
-            </div>
-        
+            </div>        
         )
     }
 }

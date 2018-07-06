@@ -27,24 +27,16 @@ class register extends Component {
   handlesubmit(e){
       e.preventDefault()
 
-      var details = {
-          username: this.state.username,
-          email: this.state.email,
-          password: this.state.password
-      }
-      var formBody = [];
-      for (var property in details) {
-          var encodedKey = encodeURIComponent(property);
-          var encodedValue = encodeURIComponent(details[property]);
-          formBody.push(encodedKey + "=" + encodedValue);
-      }
-      formBody = formBody.join("&");
-      fetch('http://10.195.2.131/auth/register',{
+      fetch('http://159.65.161.87:3000/auth/register',{
           method: 'POST',
           headers: {
-              'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+              'Content-Type': 'application/json'
           },
-          body: formBody
+          body: JSON.stringify({
+            username:this.state.username,
+            email:this.state.email,
+            password:this.state.password
+        })
       })
       .then((response) => response.json())
   }
@@ -114,57 +106,6 @@ class register extends Component {
                   </div> */}              
             </div>
           </div>
-
-
-/* <div className="ui middle aligned center aligned grid"> 
-                <div className="ui three column centered grid">
-                    <div className="column">                        
-                        <form className="ui large form">
-                            <div className="ui stacked segment">
-                                <h1 className="ui teal header">
-                                    <div className="content">
-                                        Sign Up
-                                    </div>
-                                </h1>
-                                <div className="field">
-                                    <label className="ui left aligned header">Name</label>
-                                    <div className="ui left icon input">
-                                        <i className="user icon"></i>
-                                        <input name="Username" type="text" 
-                                            placeholder="name" onChange={this.handlechange} />
-                                    </div>
-                                </div>
-                                <div className="field">
-                                    <label className="ui left aligned header">Email</label>
-                                    <div className="ui left icon input">
-                                        <i className="user icon"></i>
-                                        <input name="email" type="email" 
-                                            placeholder="E-mail address" onChange={this.handlechange} />
-                                    </div>
-                                </div>
-                                <div className="two field">
-                                <div className="field">
-                                    <label className="ui left aligned header">Password</label>
-                                    <div className="ui left icon input">
-                                        <i className="lock icon"></i>
-                                        <input name="password" type="password" className="input is-info" 
-                                            placeholder="Password" onChange={this.handlechange}/>
-                                    </div>
-                                </div>
-                                
-                                    <div className="ui left icon input">
-                                        <i className="lock icon"></i>
-                                        <input name="password" type="password" className="input is-info" 
-                                            placeholder="Confirm Password" onChange={this.handlechange}/>
-                                    </div>
-                                </div>
-                                <div className="ui fluid large teal submit button"  to="/home" onClick={this.handlesubmit}>Sign Up</div>
-                            </div>
-                            <div className="ui error message"></div>
-                        </form>
-                    </div>
-                </div>  
-            </div> */
     )
   }
 }

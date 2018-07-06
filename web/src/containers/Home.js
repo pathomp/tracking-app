@@ -9,7 +9,18 @@ class Home extends Component {
         const style = {
             "backgroundColor": "#ebebe0", //#F5F5DC #F5F5F5  ebebe0 f5f5f0
             padding: "1em",
-            paddingBottom: "1.5em"
+            paddingBottom: "1.5em",
+            "position": "fixed", 
+            "left": "0",
+            minWidth: "100%",
+            minHeight: "90%"
+        }
+        const footer = {
+            "position": "fixed",
+            "left": 0,
+            "bottom": 0,
+            "width": "100%",
+            "color": "white"
         }
         return (
              <div>
@@ -23,7 +34,7 @@ class Home extends Component {
                         </div>
                     </div>                
                 </div>
-                <div>                    
+                <div style={footer}>                    
                     <Footer/>
                 </div>
             </div>

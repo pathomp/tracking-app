@@ -19,9 +19,11 @@ class MapSearch extends Component {
             imei : props.imei,
             dspeed : props.dspeed,
             tabindex: 0,
-            selectedDays : new Date()
+            value: props.value,
+            selectedDays : props.selectedDays
         }
         this.sendData = this.sendData.bind(this)
+        this.selectCar = this.selectCar.bind(this)
     }
 
     componentDidMount() {
@@ -46,15 +48,20 @@ class MapSearch extends Component {
 
     handleDayChange = (selectedDays) => {
         this.setState({selectedDays})
+
+    }
+
+    selectCar = (e) => {
+        this.setState({ value: e.target.value })
     }
 
     render() {
         const style = {
             width: "100%",
-            height: "30vh", //194px
+            height: "30vh",
             "overflowY": "scroll"
         }
-
+                
         const cursor = {
             cursor: "pointer"
         }
@@ -62,7 +69,7 @@ class MapSearch extends Component {
         let day = { style:
             {   
                 width: "100%" , 
-                height: 36 ,
+                height: 35 , //36
                 color: "rgb(32, 156, 238)",
                 padding: ".5em 1em",
                 "textAlign": "center",
@@ -72,7 +79,7 @@ class MapSearch extends Component {
                 "borderRadius": "2px",
                 className: 'form-control'
             }
-        }  
+        }
 
         let listItems = this.state.objects.filter(
             (item) => {
@@ -107,15 +114,17 @@ class MapSearch extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {listItems.map((item, i) => {
-                                        return (
-                                            <tr key={i} className="center aligned">
-                                                <td><i className="truck icon"></i></td>
-                                                <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI)}>{item.name}</a></td>
-                                                <td>{item.object_data.speed}</td>                                                                                              
-                                            </tr>                                                                       
-                                        )
-                                    })}
+                                    {
+                                        listItems.map((item, i) => {
+                                            return (
+                                                <tr key={i} className="center aligned">
+                                                    <td><i className="truck icon"></i></td>
+                                                    <td style={cursor}><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI)}>{item.name}</a></td>
+                                                    <td>{item.object_data.speed}</td>                                                                                              
+                                                </tr>                                                                       
+                                            )
+                                        })
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -127,17 +136,31 @@ class MapSearch extends Component {
                     <TabPanel>   
                         <div className="ui segment">
                             <div className="ui two column centered grid">
+                                <div className="row">
+                                <div className="column">
+                                        <select className="ui fluid search dropdown" onChange={this.selectCar}>
+                                            <option value={null}>Select Car</option>
+                                            {
+                                                listItems.map((item) => {
+                                                    return(
+                                                        <option value={item.IMEI}>{item.name}</option>                                                    
+                                                    )
+                                                })
+                                            }                                  
+                                        </select>
+                                    </div>
                                     <div className="column">
                                         <DayPickerInput inputProps={day}
-                                        format="D/M/YYYY"
-                                        formatDate={formatDate}
-                                        parseDate={parseDate}
-                                        placeholder="DD/MM/YYYY"                               
-                                        onDayChange={this.handleDayChange}
+                                            format="D/M/YYYY"
+                                            formatDate={formatDate}
+                                            parseDate={parseDate}
+                                            placeholder="DD/MM/YYYY"                        
+                                            onDayChange={this.handleDayChange}
                                         />
-                                    </div>
+                                    </div>                                    
+                                </div>
                             </div>
-                            <HistoryInfo date={this.state.selectedDays}/> 
+                            <HistoryInfo date={this.state.selectedDays} name={this.state.value}/> 
                         </div>                      
                     </TabPanel>
                 </Tabs>
@@ -148,8 +171,11 @@ class MapSearch extends Component {
 MapSearch.defaultProps = {
     dname : null,
     imei : null,
-    dspeed : null   
+    dspeed : null,
+    value: null,
+    selectedDays: null
 };
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyBl0GHG6VgXjjS8AR45DGMCmHt4E-jhgDk',
 })(MapSearch)
+
