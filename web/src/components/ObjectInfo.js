@@ -9,7 +9,7 @@ export default class ObjectInfo extends Component {
         }        
         return (
             <div><h5/>
-                <h2 className="ui teal header"><strong>Information</strong></h2>
+                <h3 className="ui teal header"><strong>Information</strong></h3>
                 <table className="ui table" style={style}>
                     <tbody>
                         <tr>

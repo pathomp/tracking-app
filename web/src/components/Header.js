@@ -31,20 +31,15 @@ class Header extends Component {
       "fontSize" : ".5cm"
       }
     const sizeLogo = {
-      width: "15vh",
-      height: "4vh",
+      width: "100px",
+      height: "30px",
     }
     return (
         <div className="ui  inverted segment">
           <nav className="ui inverted huges menu top fixed"> {/* aria-label="main navigation" style={nav}*/}
               <div className="item">
                 <img src={logo} alt="logo" style={sizeLogo}/>
-              </div>
-              <div className="item">
-                <a href="/" style={style}>
-                  <strong>TRACKING</strong> 
-                </a>
-              </div>
+              </div>              
               {
                 localStorage.getItem('token') && (
                   <div className="right menu">

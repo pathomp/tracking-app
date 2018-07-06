@@ -11,36 +11,36 @@ export default class HomeHeader extends Component{
     }
     render(){
         const box = {
-            marginTop: "2%"
-          }
+            marginTop: "10%"
+        }
 
-          const cursor = {
+        const cursor = {
             cursor: "pointer"
-          }
+        }
 
-          const styleleft ={
+        const styleleft ={
             width: '30rem',
             height: '20rem',
             paddingRight: "2rem",
             paddingLeft: "2rem",
             marginTop: "3rem"
-          }
+        }
 
-          const boxRight = {
+        const boxRight = {
             width: '30rem',
             height: '20rem',
-          }
+        }
 
-          const background = {
+        const background = {
             backgroundImage: `url(${image})`,
             "position": "fixed", 
             "top": "0",
             "left": "0",
             minWidth: "100%",
             minHeight: "100%"
-          }
+        }
         return(
-            <div className="ui segment" style={background}>             
+            <div className="ui raised segment" style={background}>                          
                 <div className="ui container">
                     <div className="ui grid" style={box}>                
                         <div className="left floated left aligned six wide column">
@@ -55,7 +55,7 @@ export default class HomeHeader extends Component{
                             <Tabs defaultIndex={0} onSelect={tabindex => this.setState({tabindex})} >                                
                                 <TabPanel>
                                     <div>
-                                        <Login />
+                                        <Login/>
                                     </div>
                                 </TabPanel>
                                 <TabPanel>

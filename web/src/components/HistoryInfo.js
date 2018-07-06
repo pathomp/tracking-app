@@ -37,12 +37,12 @@ export default class HistoryInfo extends Component {
         }       
         return (            
             <div className="four wide column"><h5/>
-                <h2 className="ui teal header"><strong>Information</strong></h2>
+                <h3 className="ui teal header"><strong>Information</strong></h3>
                 <div style={style} >
-                    <table className="ui celled padded table">
+                    <table className="ui small celled padded table">
                         <thead>
                             <tr className="center aligned">
-                                <th>วันที่</th>
+                                <th>Date</th>
                                 <th>Speed</th>
                             </tr>
                         </thead>                                    

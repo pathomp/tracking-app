@@ -20,7 +20,8 @@ class MapSearch extends Component {
             dspeed : props.dspeed,
             tabindex: 0,
             value: props.value,
-            selectedDays : props.selectedDays
+            selectedDays : props.selectedDays,
+            tableIndex: null
         }
         this.sendData = this.sendData.bind(this)
         this.selectCar = this.selectCar.bind(this)
@@ -38,12 +39,14 @@ class MapSearch extends Component {
         this.setState({ items: e.target.value })
     }
 
-    sendData = (name,speed,imei) => {
+    sendData = (name,speed,imei,i) => {
         this.setState({
             dname : name,
             imei : imei,
-            dspeed : speed
+            dspeed : speed,
+            tableIndex : i
         });   
+        console.log(this.state.tableIndex)
     }
 
     handleDayChange = (selectedDays) => {
@@ -59,7 +62,7 @@ class MapSearch extends Component {
         const style = {
             width: "100%",
             height: "30vh",
-            "overflowY": "scroll"
+            "overflowY": "auto"
         }
                 
         const cursor = {
@@ -105,7 +108,7 @@ class MapSearch extends Component {
                             </div>
                             <br/>       
                             <div style={style}>
-                            <table className="ui table">
+                            <table className="ui small selectable table">
                                 <thead>
                                     <tr className="center aligned">
                                         <th></th>
@@ -117,10 +120,10 @@ class MapSearch extends Component {
                                     {
                                         listItems.map((item, i) => {
                                             return (
-                                                <tr key={i} className="center aligned">
-                                                    <td><i className="truck icon"></i></td>
-                                                    <td style={cursor}><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI)}>{item.name}</a></td>
-                                                    <td>{item.object_data.speed}</td>                                                                                              
+                                                <tr key={i} className={this.state.tableIndex==i? "center aligned active":"center aligned"} style={cursor}>
+                                                    <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}><i className="truck icon"></i></a></td>
+                                                    <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}>{item.name}</a></td>
+                                                    <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}>{item.object_data.speed}</a></td>                                                                                              
                                                 </tr>                                                                       
                                             )
                                         })
