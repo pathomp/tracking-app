@@ -15,8 +15,7 @@ export default class MapContainer extends Component {
     }
 
     getLocation = () => {
-      // console.log(localStorage.getItem('token'))
-      fetch('http://localhost:5000/api/v1/data',{ // http://192.168.99.100:8080/objects
+      fetch('http://138.197.72.169:3001/data',{
         method: 'GET',
         headers:{
           'content-type': 'application/json',

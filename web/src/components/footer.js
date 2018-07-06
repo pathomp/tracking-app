@@ -9,7 +9,7 @@ export default class footer extends Component {
              <div className="ui inverted vertical footer segment">
                 {/* <div className="ui container"> */}
                     <div className="ui left aligned footer top fixed" style={style}>
-                            @pttdigital 2018
+                        Copyright © 2018 Hermes. All Rights Reserved.
                     </div>
                 {/* </div> */}
             </div>

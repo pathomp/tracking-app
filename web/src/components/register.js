@@ -27,7 +27,7 @@ class register extends Component {
   handlesubmit(e){
       e.preventDefault()
 
-      fetch('http://159.65.161.87:3000/auth/register',{
+      fetch('http://138.197.72.169:3000/auth/register',{
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -38,7 +38,9 @@ class register extends Component {
             password:this.state.password
         })
       })
-      .then((response) => response.json())
+      .then((response) => {response.json() 
+      window.location = "http://localhost:3000/"})
+      
   }
 
   componentWillMount(){ 
@@ -92,7 +94,7 @@ class register extends Component {
                     </div>
                   </div>
                 </div>
-                  <div className="ui fluid large blue submit button" onClick={this.handlesubmit}>
+                  <div className="ui fluid large blue submit button" onClick={this.handlesubmit} href="/">
                       Sign Up
                   </div>
                   {/* <hr/>

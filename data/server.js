@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const logger = require('morgan')
 const config = require('./config')
 const jwt = require('jsonwebtoken') 
+const corsMiddleware = require('restify-cors-middleware')
 
 const isAuthenticated = (req, res, next) => {
 
@@ -29,8 +30,16 @@ const server = restify.createServer({
     version: config.version
 })
 
+const cors = corsMiddleware({
+    // preflightMaxAge: 5,
+    origins: ['*'],
+    allowHeaders: ['Content-Type','Content-Length','Authorization'],
+})
+
 server.use(logger('dev'))
 server.use(isAuthenticated)
+server.pre(cors.preflight)
+server.use(cors.actual)
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());

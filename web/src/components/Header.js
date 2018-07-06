@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import decode from 'jwt-decode';
 import logo from "../image/logoh1.png"
 
@@ -8,7 +7,7 @@ class Header extends Component {
   constructor(){
     super()
     this.state = {
-      name : "abc"
+      name : ""
     }
   }
 
@@ -18,18 +17,17 @@ class Header extends Component {
   }
 
   componentDidMount = () => {
-    if(localStorage.getItem('token') !== null){
-      const name = decode(localStorage.getItem('token'))
-      this.setState({name:name.email})
-    }
+    try {
+      if(localStorage.getItem('token') !== null){
+        const name = decode(localStorage.getItem('token'))
+        this.setState({name:name.username})
+      }      
+    } catch (error) {
+      
+    }    
   }
 
   render() {
-    const style = {
-      "fontFamily":
-        "Sailec-Medium,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif",
-      "fontSize" : ".5cm"
-      }
     const sizeLogo = {
       width: "100px",
       height: "30px",
@@ -44,7 +42,7 @@ class Header extends Component {
                 localStorage.getItem('token') && (
                   <div className="right menu">
                       <div className="item">
-                        <p>Email {" "} {this.state.name}</p>
+                        <p>Hello {" "} {this.state.name}</p>
                       </div>
                       <div className="item">
                         <a className="ui red button" onClick={this.signout}>
