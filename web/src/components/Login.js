@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import history from '../history'
-import { Link } from 'react-router-dom'
-
-const request = require('supertest')
 
 class Login extends Component {
     constructor(props) {

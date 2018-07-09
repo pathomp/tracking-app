@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
-import { Switch, Router, Route, Redirect } from 'react-router-dom'
-
+import { Switch, Route} from 'react-router-dom'
 import Header from '../components/Header'
-
-import history from '../history'
 import Home from './Home'
-import HomeHeader from './../components/HomeHeader';
-import Register from './../components/register';
+import HomeHeader from './../components/HomeHeader'
 
 class App extends Component {
-  render() {
-    const box = {
-      marginTop: "2.5rem"
-    }
-    
+  render() {    
     const style = {
       "backgroundColor": "#ebebe0",
       "height": "100vh"
@@ -25,10 +17,7 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={HomeHeader}/>
-                <div style={box}>
-                  <Route path="/register" component={Register} />
                   <Route path="/home" component={Home} />
-                </div>
               </Switch>
             </div>
           </section> 

@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import image from "../image/bg.jpg"
 import Login from './Login'
-import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
 import Register from './register';
 
 export default class HomeHeader extends Component{
@@ -9,6 +8,15 @@ export default class HomeHeader extends Component{
         super()
         this.state = {tabindex: 0}
     }
+
+    changepageRegister = () => {
+        this.setState({tabindex:1})
+    }
+
+    changepageLogin = () => {
+        this.setState({tabindex:0})
+    }
+
     render(){
         const box = {
             marginTop: "10%"
@@ -39,6 +47,7 @@ export default class HomeHeader extends Component{
             minWidth: "100%",
             minHeight: "100%"
         }
+
         return(
             <div className="ui raised segment" style={background}>                          
                 <div className="ui container">
@@ -51,38 +60,26 @@ export default class HomeHeader extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="right floated left aligned six wide column" style={boxRight}> 
-                            <Tabs defaultIndex={0} onSelect={tabindex => this.setState({tabindex})} >                                
-                                <TabPanel>
+                        <div className="right floated left aligned six wide column" style={boxRight}>  
+                            {
+                                !this.state.tabindex.valueOf(1) && (
                                     <div>
-                                        <Login/>
+                                        <Login/> 
+                                        <a className="ui grey inverted tiny header" style={cursor} onClick={this.changepageRegister}>Don't have an account? <u> SIGN UP</u></a>
                                     </div>
-                                </TabPanel>
-                                <TabPanel>
+                                )
+                            }  
+                            {
+                                this.state.tabindex.valueOf(1) && (
                                     <div>
                                         <Register/>
+                                        <a className="ui grey inverted tiny header" style={cursor} onClick={this.changepageLogin}>Already have an account? <u>SIGN IN</u></a>
                                     </div>
-                                </TabPanel>  
-                                <TabList className="ui center aligned tiny header">
-                                    <Tab>
-                                    {
-                                        this.state.tabindex.valueOf(1) && (                                            
-                                            <a className="ui grey inverted centered tiny header" style={cursor}>Already have an account? <u>SIGN IN</u></a>
-                                        )
-                                    }
-                                    </Tab>
-                                    <Tab>
-                                    {
-                                        !this.state.tabindex.valueOf(1) && (
-                                            <a className="ui grey inverted tiny header" style={cursor}>Don't have an account? <u> SIGN UP</u></a>
-                                        )
-                                    }
-                                    </Tab>                                        
-                                </TabList>                                  
-                            </Tabs>
+                                )
+                            }
                         </div>
                     </div>
-                </div>               
+                </div>           
             </div>        
         )
     }

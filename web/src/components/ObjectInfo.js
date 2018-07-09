@@ -5,12 +5,13 @@ export default class ObjectInfo extends Component {
         const style = {
             width: '100%',
             height: "100%",
-            "backgroundColor": "hsl(0, 0%, 100%)"
+            "backgroundColor": "hsl(0, 0%, 100%)",
+            fontSize: ".8rem"
         }        
         return (
-            <div><h5/>
+            <div><br/>
                 <h3 className="ui teal header"><strong>Information</strong></h3>
-                <table className="ui table" style={style}>
+                <table className="ui small table" style={style}>
                     <tbody>
                         <tr>
                             <td>Name</td>

@@ -45,8 +45,7 @@ class MapSearch extends Component {
             imei : imei,
             dspeed : speed,
             tableIndex : i
-        });   
-        console.log(this.state.tableIndex)
+        })
     }
 
     handleDayChange = (selectedDays) => {
@@ -61,26 +60,31 @@ class MapSearch extends Component {
     render() {
         const style = {
             width: "100%",
-            height: "30vh",
-            "overflowY": "auto"
-        }
-                
+            height: "25vh",
+            "overflowY": "auto",
+            fontSize: ".9rem"
+        }    
         const cursor = {
             cursor: "pointer"
+        }
+
+        const styleTab = {
+            "position": "fixed",
+            minWidth: "22.5%",
+            minHeight: "75%"
         }
 
         let day = { style:
             {   
                 width: "100%" , 
-                height: 35 , //36
+                height: 35 ,
                 color: "rgb(32, 156, 238)",
                 padding: ".5em 1em",
                 "textAlign": "center",
                 "fontSize": "1em" ,
                 "borderColor": "rgb(32, 156, 238)",
                 "border": "1px solid" ,
-                "borderRadius": "2px",
-                className: 'form-control'
+                "borderRadius": "2px"
             }
         }
 
@@ -91,15 +95,15 @@ class MapSearch extends Component {
         )
         return (       
             <div>
-                <Tabs defaultIndex={0} onSelect={tabindex => this.setState({tabindex})}>
+                <Tabs defaultIndex={0} onSelect={tabindex => this.setState({tabindex})} style={styleTab}>
                     <TabList className="ui two tiny item menu" style={cursor}>
-                        <Tab className={this.state.tabindex.valueOf(1)? "item":"active item"}><a className="ui tiny blue header">Object</a></Tab>
-                        <Tab className={this.state.tabindex.valueOf(1)? "active item":"item"}><a className="ui tiny blue header">History</a></Tab>                        
+                        <Tab className={this.state.tabindex.valueOf(1)? "item":"active item"}><p className="ui tiny header">Object</p></Tab>
+                        <Tab className={this.state.tabindex.valueOf(1)? "active item":"item"}><p className="ui tiny header">History</p></Tab>                        
                     </TabList>
                     <TabPanel>
                         <div className="ui segment">
                             <div className="right menu ">
-                                <div className="ui fluid icon input focus">
+                                <div className="ui small fluid icon input focus">
                                     <input value={this.state.items}
                                         type="text" onChange={this.filterList.bind(this)} 
                                         placeholder="Search...."/>
@@ -115,15 +119,15 @@ class MapSearch extends Component {
                                         <th>Name</th>
                                         <th>Speed</th>
                                     </tr>
-                                </thead>
+                                </thead>                                
                                 <tbody>
                                     {
                                         listItems.map((item, i) => {
                                             return (
-                                                <tr key={i} className={this.state.tableIndex==i? "center aligned active":"center aligned"} style={cursor}>
-                                                    <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}><i className="truck icon"></i></a></td>
-                                                    <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}>{item.name}</a></td>
-                                                    <td><a onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}>{item.object_data.speed}</a></td>                                                                                              
+                                                <tr key={i} className={this.state.tableIndex===i? "center aligned active":"center aligned"} style={cursor}>
+                                                    <td><p onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}><i className="truck icon"></i></p></td>
+                                                    <td><p onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}>{item.name}</p></td>
+                                                    <td><p onClick={() => this.sendData(item.name,item.object_data.speed,item.IMEI,i)}>{item.object_data.speed}</p></td>                                                                                              
                                                 </tr>                                                                       
                                             )
                                         })
@@ -139,28 +143,27 @@ class MapSearch extends Component {
                     <TabPanel>   
                         <div className="ui segment">
                             <div className="ui two column centered grid">
-                                <div className="row">
                                 <div className="column">
-                                        <select className="ui fluid search dropdown" onChange={this.selectCar}>
-                                            <option value={null}>Select Car</option>
-                                            {
-                                                listItems.map((item) => {
-                                                    return(
-                                                        <option value={item.IMEI}>{item.name}</option>                                                    
-                                                    )
-                                                })
-                                            }                                  
-                                        </select>
-                                    </div>
-                                    <div className="column">
-                                        <DayPickerInput inputProps={day}
-                                            format="D/M/YYYY"
-                                            formatDate={formatDate}
-                                            parseDate={parseDate}
-                                            placeholder="DD/MM/YYYY"                        
-                                            onDayChange={this.handleDayChange}
-                                        />
-                                    </div>                                    
+                                    <select className="ui fluid search dropdown" onChange={this.selectCar}>
+                                        <option value={null}>Select Car</option>
+                                        {
+                                            listItems.map((item,i) => {
+                                                return(
+                                                    <option key={i} value={item.IMEI}>{item.name}</option>                                                    
+                                                )
+                                            })
+                                        }                                  
+                                    </select><br/>
+                                    <DayPickerInput inputProps={day}
+                                        format="D/M/YYYY"
+                                        formatDate={formatDate}
+                                        parseDate={parseDate}
+                                        placeholder="DD/MM/YYYY"                        
+                                        onDayChange={this.handleDayChange}
+                                        dayPickerProps={{
+                                            todayButton: 'Today',
+                                          }}
+                                    />
                                 </div>
                             </div>
                             <HistoryInfo date={this.state.selectedDays} name={this.state.value}/> 
