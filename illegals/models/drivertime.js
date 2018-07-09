@@ -5,7 +5,9 @@ const config = require('../config')
 
 const DataSchema = new mongoose.Schema({
         driver_lic : String,
-        gps_time : String
+        gps_time : String,
+        drive_time : Number,
+        rest_time : Number
 },{ collection: 'illegals_drivetimes'})
 
 // DataSchema.plugin(uniqueValidator, {message: 'is already taken.'});
