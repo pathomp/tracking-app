@@ -5,7 +5,7 @@ const config = require('../config')
 
 const DataSchema = new mongoose.Schema({
         gps_id : String,
-        gps_time : String,
+        start_time : String,
         type : Number,
         speed : Number
 },{ collection: 'illegals_overspeed'})

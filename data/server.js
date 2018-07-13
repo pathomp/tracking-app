@@ -37,7 +37,7 @@ const cors = corsMiddleware({
 })
 
 server.use(logger('dev'))
-server.use(isAuthenticated)
+// server.use(isAuthenticated)
 server.pre(cors.preflight)
 server.use(cors.actual)
 server.use(restify.plugins.acceptParser(server.acceptable));
