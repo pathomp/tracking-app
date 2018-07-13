@@ -11,7 +11,7 @@ export default class ObjectInfo extends Component {
         return (
             <div><br/>
                 <h3 className="ui teal header"><strong>Information</strong></h3>
-                <table className="ui small table" style={style}>
+                <table className="ui small unstackable table" style={style}>
                     <tbody>
                         <tr>
                             <td>Name</td>
@@ -24,7 +24,7 @@ export default class ObjectInfo extends Component {
                         <tr>    
                             <td>Speed</td>
                             <td>{this.props.speed} </td> 
-                        </tr>
+                        </tr>                        
                     </tbody>
                 </table>
             </div>

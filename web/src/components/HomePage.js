@@ -3,7 +3,7 @@ import image from "../image/bg.jpg"
 import Login from './Login'
 import Register from './register';
 
-export default class HomeHeader extends Component{
+export default class HomePage extends Component{
     constructor(){
         super()
         this.state = {tabindex: 0}
@@ -27,16 +27,11 @@ export default class HomeHeader extends Component{
         }
 
         const styleleft ={
-            width: '30rem',
-            height: '20rem',
+            width: '100%',
+            height: '100%',
             paddingRight: "2rem",
             paddingLeft: "2rem",
             marginTop: "3rem"
-        }
-
-        const boxRight = {
-            width: '30rem',
-            height: '20rem',
         }
 
         const background = {
@@ -51,21 +46,21 @@ export default class HomeHeader extends Component{
         return(
             <div className="ui raised segment" style={background}>                          
                 <div className="ui container">
-                    <div className="ui grid" style={box}>                
-                        <div className="left floated left aligned six wide column">
+                    <div className="ui stackable two column grid" style={box}>  
+                        <div className="left floated left aligned seven wide computer only column"> {/* */}
                             <div style={styleleft}>
-                                <div className="ui center grid">
+                                <div className="ui center grid">                                    
                                     <h1 className="ui blue inverted header">Simplicity at scale.</h1>
                                     <h3 className="ui gray inverted header">Our cloud computing platform was built with simplicity at the forefront, so managing infrastructure is easy, whether your business is running one virtual machine or ten thousand. DigitalOcean gets out of your way so teams can build, deploy, and scale cloud applications faster and more efficiently.</h3>
                                 </div>
                             </div>
                         </div>
-                        <div className="right floated left aligned six wide column" style={boxRight}>  
+                        <div className="right floated left aligned six wide column"  >  {/*right floated left aligned */}
                             {
                                 !this.state.tabindex.valueOf(1) && (
                                     <div>
                                         <Login/> 
-                                        <a className="ui grey inverted tiny header" style={cursor} onClick={this.changepageRegister}>Don't have an account? <u> SIGN UP</u></a>
+                                        <h5 className="ui center aligned grey inverted tiny header" style={cursor} onClick={this.changepageRegister}>Don't have an account? <u> SIGN UP</u></h5>                                     
                                     </div>
                                 )
                             }  
@@ -73,7 +68,7 @@ export default class HomeHeader extends Component{
                                 this.state.tabindex.valueOf(1) && (
                                     <div>
                                         <Register/>
-                                        <a className="ui grey inverted tiny header" style={cursor} onClick={this.changepageLogin}>Already have an account? <u>SIGN IN</u></a>
+                                        <h5 className="ui center aligned grey inverted tiny header" style={cursor} onClick={this.changepageLogin}>Already have an account? <u>SIGN IN</u></h5>
                                     </div>
                                 )
                             }

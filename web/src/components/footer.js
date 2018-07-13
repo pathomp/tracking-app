@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class footer extends Component {
     render() {
         const style = {
-            paddingLeft: "1em"
+            paddingLeft: ".5em"
         }
         return (
              <div className="ui vertical footer segment">

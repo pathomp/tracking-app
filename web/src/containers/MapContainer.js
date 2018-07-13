@@ -62,7 +62,7 @@ export default class MapContainer extends Component {
         // width: '90vw', 
         // height: '55vh' 
         width: '100%', 
-        height: '100%'  
+        height: '100%'
       }
   
       return ( 

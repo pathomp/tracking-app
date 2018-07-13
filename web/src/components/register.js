@@ -39,7 +39,8 @@ class register extends Component {
         })
       })
       .then((response) => {response.json() 
-      window.location = "http://localhost:3000/"})
+        alert("Register Success")
+        window.location = "http://localhost:3000/home"})
       
   }
 
@@ -85,9 +86,6 @@ class register extends Component {
                       <input
                         name="password"
                         type="password"
-                        className={
-                          this.state.checkpass ? "input is-success" : "input is-danger"
-                        }
                         placeholder="Confirm Password"
                         onChange={this.handlechange}
                       />
