@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const config = require('../config')
 
 const DataSchema = new mongoose.Schema({
-        gps_id : String,
+        imei : String,
         start_time : String,
         type : Number,
         speed : Number

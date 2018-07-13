@@ -36,13 +36,13 @@ module.exports = (server) => {
 
                 if (overspeed == 1) {
 
-                    datum = await Overspeed.findOne({ gps_id: data.imei })
+                    datum = await Overspeed.findOne({ imei: data.imei })
                     if (!datum) {
                         await Overspeed.create({ gps_id: data.imei, start_time: data.ts.substring(0,data.ts.length-1), type:type, speed: data.speed })
                         res.send(201, "Register new Overspeed")
                     } else {
 
-                        const timenow = new Date(data.gps_time).getTime()
+                        const timenow = new Date(data.ts.substring(0,data.ts.length-1)).getTime()
                         const timeget = new Date(datum.start_time).getTime()
 
                         this.state = { startDate: timeget, timeEnd: timenow }
@@ -55,10 +55,10 @@ module.exports = (server) => {
 
                         if (diffDuration.asMinutes() >= 2) {
 
-                            alarmcheck = await Illegals.findOne({ license: data.gps_id, status: "On" })
+                            alarmcheck = await Illegals.findOne({ imei: data.imei, status: "On" })
                             if (!alarmcheck) {
-                                await Illegals.create({ license: data.gps_id, driver_lic: data.driver_lic, type: data.type, time: data.gps_time, illegals_name: "Overspeed", status: "On" })
-                                res.send(201, "Alarm of " + datum.gps_id + " is On")
+                                await Illegals.create({ imei: data.imei, time: data.ts.substring(0,data.ts.length-1), illegals_name: "Overspeed", status: "On" })
+                                res.send(201, "Alarm of " + datum.imei + " is On")
                             } else {
                                 res.send(201, "Alarm of this car is On")
                             }
@@ -68,7 +68,7 @@ module.exports = (server) => {
                             res.send(201, datum.gps_id + " Update Overspeed")
 
                         } else {
-                            await Overspeed.findOneAndUpdate({ gps_id: data.gps_id }, { start_time: data.gps_time })
+                            await Overspeed.findOneAndUpdate({ imei: data.imei }, { start_time: data.ts.substring(0,data.ts.length-1) })
                             res.send(201, " Update Overspeed")
 
                         }
@@ -76,8 +76,8 @@ module.exports = (server) => {
                         res.send(201, diffDuration.asMinutes())
                     }
                 } else {
-                    await Illegals.findOneAndUpdate({ license: data.gps_id, illegals_name: "Overspeed" }, { status: "Closed" })
-                    await Overspeed.remove({ 'gps_id': data.gps_id })
+                    await Illegals.findOneAndUpdate({ imei: data.imei, illegals_name: "Overspeed" }, { status: "Closed" })
+                    await Overspeed.remove({ 'imei': data.imei })
                     res.send(201, "Ok")
                 }
 

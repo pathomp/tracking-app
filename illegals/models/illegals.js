@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const config = require('../config')
 
 const DataSchema = new mongoose.Schema({
-        license : String,
+        imei : String,
         driver_lic : String,
         type : Number,
         time : String,
