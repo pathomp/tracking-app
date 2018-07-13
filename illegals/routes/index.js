@@ -16,10 +16,10 @@ module.exports = (server) => {
     server.post('/illegal/OverSpeed/', (req, res, next) => {
 
         let overspeed
-
+        let type = 1
         let data = req.body || {}
 
-        console.log(data.ts.substring(0,data.ts.length))
+        console.log(data.ts.substring(0,data.ts.length-1))
 
         async function registOverspeed(data) {
             let datum
@@ -38,7 +38,7 @@ module.exports = (server) => {
 
                     datum = await Overspeed.findOne({ gps_id: data.imei })
                     if (!datum) {
-                        await Overspeed.create({ gps_id: data.imei, start_time: data.ts, type: data.type, speed: data.speed })
+                        await Overspeed.create({ gps_id: data.imei, start_time: data.ts.substring(0,data.ts.length-1), type:type, speed: data.speed })
                         res.send(201, "Register new Overspeed")
                     } else {
 

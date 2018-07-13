@@ -52,12 +52,12 @@ module.exports = (server) => {
             }
             try{
                 datum = await Data.create(input_datum)
-                const response = axios({
+                const response = await axios({
                     method: 'POST',
-                    url: 'http://localhost:3001/illegal/Overspeed/',
+                    url: 'http://localhost:3001/illegal/OverSpeed/',
                     data: datum
                 });
-                console.log(response.data)
+                
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)
