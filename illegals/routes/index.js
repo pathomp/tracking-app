@@ -6,10 +6,20 @@ const moment = require('moment')
 
 module.exports = (server) => {
 
+    server.get('/illegal/test/', (req, res, next) => {
+
+        // let data = req.body || {}
+
+        res.send(201, "OK")
+    })
+
     server.post('/illegal/OverSpeed/', (req, res, next) => {
+
         let overspeed
 
         let data = req.body || {}
+
+        console.log(data.ts.substring(0,data.ts.length))
 
         async function registOverspeed(data) {
             let datum
@@ -26,9 +36,9 @@ module.exports = (server) => {
 
                 if (overspeed == 1) {
 
-                    datum = await Overspeed.findOne({ gps_id: data.gps_id })
+                    datum = await Overspeed.findOne({ gps_id: data.imei })
                     if (!datum) {
-                        await Overspeed.create({ gps_id: data.gps_id, start_time: data.gps_time, type: data.type, speed: data.speed })
+                        await Overspeed.create({ gps_id: data.imei, start_time: data.ts, type: data.type, speed: data.speed })
                         res.send(201, "Register new Overspeed")
                     } else {
 
