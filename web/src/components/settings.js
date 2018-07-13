@@ -39,7 +39,7 @@ export default class settings extends Component {
                                             <h3>Object  Setting</h3>
                                         </th>
                                         <th className="right aligned" style={{width: "20em"}}>
-                                            <button className="ui inverted black button" onClick={() => this.setState({addObject:true})}>
+                                            <button className="ui inverted black button" onClick={() => this.setState({addObject:true ,open: false , delete:false})}>
                                                 <i className="plus icon" title="Add Object"/>
                                                 Add Object
                                             </button>
@@ -67,7 +67,7 @@ export default class settings extends Component {
                                                 <td style={{width: "5em"}}><i className="icon exclamation"/></td>                                                
                                                 <td style={{width: "15em"}}>-</td>
                                                 <td style={{width: "5em",cursor: "pointer"}}>
-                                                    <i className="icon pencil alternate" title="Edit" onClick={() => this.setState({open:true})}/>
+                                                    <i className="icon pencil alternate" title="Edit" onClick={() => this.setState({open:true , addObject:false , delete:false})}/>
                                                 </td>
                                                 <td style={{width: "5em",cursor: "pointer"}}>
                                                     <i className="icon clone" title="Duplicate" />
@@ -76,7 +76,7 @@ export default class settings extends Component {
                                                     <i className="icon eraser" title="Clear History" />
                                                 </td>
                                                 <td style={{width: "5em",cursor: "pointer"}}>
-                                                    <i className="icon trash alternate" title="Delete" onClick={() => this.setState({delete:true})}/>
+                                                    <i className="icon trash alternate" title="Delete" onClick={() => this.setState({delete:true, addObject:false , open:false})}/>
                                                 </td>
                                             </tr>
                                         )
