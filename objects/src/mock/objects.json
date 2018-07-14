@@ -4,6 +4,9 @@
         "IMEI": "1000000",
         "createdAt": {"$date":"2018-06-04T20:00:30Z"},
         "object_data":    {
+            "Event" : {
+                "illegals" : "over speed"
+            },
             "geometry": {
                 "type": "Point",
                 "coordinates": [

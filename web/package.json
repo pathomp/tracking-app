@@ -4,9 +4,10 @@
   "private": true,
   "proxy": "http://localhost:3000/",
   "dependencies": {
+    "assert-plus": "^1.0.0",
     "classname": "0.0.0",
     "express": "^4.16.3",
-    "google-maps-react": "^2.0.2",
+    "google-map-react": "^1.0.5",
     "js-tokens": "^4.0.0",
     "jwt-decode": "^2.2.0",
     "loose-envify": "^1.3.1",
@@ -15,9 +16,12 @@
     "react": "^16.4.0",
     "react-day-picker": "^7.1.9",
     "react-dom": "^16.4.0",
+    "react-motion": "^0.5.2",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
     "react-tabs": "^2.2.2",
+    "recompose": "^0.27.1",
+    "reselect": "^3.0.1",
     "supertest": "^3.1.0"
   },
   "scripts": {

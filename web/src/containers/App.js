@@ -25,10 +25,7 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={HomeHeader}/>
-                <div style={box}>
-                  <Route path="/register" component={Register} />
-                  <Route path="/home" component={Home} />
-                </div>
+                <Route style={box} path="/home" component={Home} />
               </Switch>
             </div>
           </section> 

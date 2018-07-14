@@ -44,7 +44,6 @@ module.exports = (server) => {
             try{
 
                 user = await User.findOne({ email : data.email})
-                console.log(user)
                 if(!user) return res.send(403, {"message": "Email not found"})
 
                 authenticate = await user.validPassword(data.password)
@@ -54,7 +53,6 @@ module.exports = (server) => {
                 res.send(200, { "token_type" : "bearer","access_token" : token,"expires_in": "1h"})
 
             } catch(err) {
-                console.error(err)
                 res.send(500, {"message" : err.message})
             }
         }

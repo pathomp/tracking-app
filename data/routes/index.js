@@ -19,7 +19,6 @@ module.exports = (server) => {
             let datum
             try{
                 datum = await Data.findOne({'imei':imei})
-                console.log(datum)
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)
@@ -39,10 +38,18 @@ module.exports = (server) => {
         let data = req.body || {}
 
         async function createData(data) {
-            let datum
+            let input_datum = {
+                "geometry": {
+                    "coordinates": [
+                        data.LON,
+                        data.LAT
+                    ]
+                },
+                "speed": data.SPEED,
+                "imei": imei
+            }
             try{
-                data.imei = imei
-                datum = await Data.create(data)
+                datum = await Data.create(input_datum)
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)

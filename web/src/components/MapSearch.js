@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ObjectInfo from '../components/ObjectInfo'
 import MapContainer from '../containers/MapContainer'
-import { GoogleApiWrapper } from 'google-maps-react'
+// import { GoogleApiWrapper } from 'google-maps-react'
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
 import 'react-day-picker/lib/style.css'
@@ -178,7 +178,8 @@ MapSearch.defaultProps = {
     value: null,
     selectedDays: null
 };
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBl0GHG6VgXjjS8AR45DGMCmHt4E-jhgDk',
-})(MapSearch)
+export default MapSearch
+// export default GoogleApiWrapper({
+//     apiKey: 'AIzaSyBl0GHG6VgXjjS8AR45DGMCmHt4E-jhgDk',
+// })(MapSearch)
 

@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
-import { GoogleApiWrapper } from 'google-maps-react'
-import MapContainer from './MapContainer'
-import Search from '../components/MapSearch'
+// import { GoogleApiWrapper } from 'google-maps-react'
+// import MapContainer from './MapContainer'
+// import Search from '../components/MapSearch'
 import Footer from './../components/footer';
+import Map from '../components/Map/Map';
 
 class Home extends Component {
+    constructor(){
+        super()
+    }
     render() {
         const style = {
             "backgroundColor": "#ebebe0", //#F5F5DC #F5F5F5  ebebe0 f5f5f0
@@ -22,15 +26,24 @@ class Home extends Component {
             "width": "100%",
             "color": "white"
         }
+        const layout = {
+            "display": "flex",
+            "minHeight": "90vh",
+            "flexDirection": "column",
+            "margin": "0 1px 0 1px",
+            "width": "100vw"
+        }
         return (
              <div>
                 <div className="ui grid">
                     <div className="row" style={style}>
                         <div className="four wide column">
-                            <Search onFilter={this.onFilter} />
+                            {/* <Search onFilter={this.onFilter} /> */}
                         </div>
                         <div className="twelve wide column">
-                            <MapContainer google={this.props.google} />
+                            <div style={{ height: '100vh', width: '100%' }}>
+                                <Map />
+                            </div>
                         </div>
                     </div>                
                 </div>
@@ -42,6 +55,4 @@ class Home extends Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBl0GHG6VgXjjS8AR45DGMCmHt4E-jhgDk',
-})(Home)
+export default Home
