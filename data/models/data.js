@@ -10,7 +10,8 @@ const DataSchema = new mongoose.Schema({
         },
         ts : { type: Date, default: Date.now},
         speed : Number,
-        imei : String
+        imei : String,
+        type : Number
 },{ collection: 'data'})
 
 DataSchema.plugin(uniqueValidator, {message: 'is already taken.'});

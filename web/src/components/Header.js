@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
-import decode from 'jwt-decode';
+import decode from 'jwt-decode'
 import logo from "../image/logoh1.png"
-
+import { Dropdown } from 'semantic-ui-react'
+import EditProfile from './editProfile';
 
 class Header extends Component {
   constructor(){
     super()
     this.state = {
-      name : ""
+      name : "ABCD",
+      addCar: false,
+      onclickprofile : false
     }
   }
 
   signout = () =>{
     localStorage.removeItem('token')
+    localStorage.removeItem('login')
     window.location = "http://localhost:3000"
   }
 
@@ -27,32 +31,44 @@ class Header extends Component {
     }    
   }
 
+  addCar = () => {
+    this.setState({addCar:true})
+  }
+
   render() {
     const sizeLogo = {
       width: "100px",
       height: "30px",
     }
+    
     return (
         <div className="ui  inverted segment">
-          <nav className="ui inverted huges menu top fixed"> {/* aria-label="main navigation" style={nav}*/}
-              <div className="item">
-                <img src={logo} alt="logo" style={sizeLogo}/>
-              </div>              
+          <nav className="ui inverted huges menu top fixed">
+              <a className="item" href="/home">
+                <img src={logo} alt="logo" style={sizeLogo} />
+              </a>              
               {
-                localStorage.getItem('token') && (
+                 localStorage.getItem('login') && (
                   <div className="right menu">
-                      <div className="item">
-                        <p>Hello {" "} {this.state.name}</p>
-                      </div>
-                      <div className="item">
-                        <a className="ui red button" onClick={this.signout}>
-                          Sign Out
-                        </a>
-                      </div>
-                  </div>
-                )
-              }        
+                    <Dropdown text={this.state.name} item>
+                      <Dropdown.Menu>
+                        <Dropdown.Item icon="user" text={this.state.name} onClick={() => this.setState({onclickprofile:true})}/>
+                        <Dropdown.Item icon="sliders horizontal" text="Setting" href="/setting"/>
+                        <Dropdown.Divider />
+                        <Dropdown.Item icon="sign out alternate" text="Sign Out" onClick={this.signout}/>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                      {/* <div className="item">
+                        <button className="ui inverted black button" onClick={this.signout}>
+                          <i className="sign out alternate icon"/>
+                            Sign Out                          
+                        </button>                        
+                      </div> */}
+                  </div> 
+                 ) 
+              } 
           </nav>
+          <EditProfile open={this.state.onclickprofile}/>
       </div>
     )
   }

@@ -15,7 +15,7 @@ export default class MapContainer extends Component {
     }
 
     getLocation = () => {
-      fetch('http://138.197.72.169:3001/data',{
+        fetch('http://138.197.72.169:3001/data',{
         method: 'GET',
         headers:{
           'content-type': 'application/json',
@@ -27,7 +27,7 @@ export default class MapContainer extends Component {
           // console.log(json)
           this.setState({locations:json})
           this.loadMap();
-      });
+      });      
     }
   
     loadMap() {
@@ -46,13 +46,13 @@ export default class MapContainer extends Component {
   
         this.map = new maps.Map(node, mapConfig); 
 
-        this.state.locations.forEach( location => { 
-          new google.maps.Marker({ 
-            position: {lat: location.geometry.coordinates[1], lng: location.geometry.coordinates[0]}, 
-            map: this.map, 
-        //     title: location.name // the title of the marker is set to the name of the location
-          });
-        })
+        // this.state.locations.forEach( location => { 
+        //   new google.maps.Marker({ 
+        //     position: {lat: location.geometry.coordinates[1], lng: location.geometry.coordinates[0]}, 
+        //     map: this.map, 
+        // //     title: location.name // the title of the marker is set to the name of the location
+        //   });
+        // })
   
       }
     }
@@ -62,7 +62,7 @@ export default class MapContainer extends Component {
         // width: '90vw', 
         // height: '55vh' 
         width: '100%', 
-        height: '100%'  
+        height: '100%'
       }
   
       return ( 

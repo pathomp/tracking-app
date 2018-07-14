@@ -37,6 +37,10 @@ const cors = corsMiddleware({
 })
 
 server.use(logger('dev'))
+<<<<<<< HEAD
+=======
+// server.use(isAuthenticated)
+>>>>>>> 42f7df8f2585157d826535ef3e3c7de7d975fcb8
 server.pre(cors.preflight)
 server.use(cors.actual)
 server.use(isAuthenticated)

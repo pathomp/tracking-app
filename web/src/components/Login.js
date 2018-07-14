@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import history from '../history'
-import { Link } from 'react-router-dom'
-
-const request = require('supertest')
 
 class Login extends Component {
     constructor(props) {
@@ -30,9 +26,15 @@ class Login extends Component {
         })
         .then((response) => response.json())
         .then(json => {           
-            localStorage.setItem('token', json.access_token)
-            window.location = "http://localhost:3000/home";
-        });
+            localStorage.setItem('token', json.access_token) 
+            if(json.access_token){               
+                window.location = "http://localhost:3000/home";
+                localStorage.setItem('login',true)
+            }else{
+                alert("Invalid Username or Plassword")
+                window.location = "http://localhost:3000";
+            }                      
+        });        
     }
 
     componentWillMount(){ 
@@ -45,20 +47,21 @@ class Login extends Component {
             <div className="ui form ">
                 <h1 className="ui left aligned dividing inverted header">Sign In</h1>
                 <div className="field inverted segment">
-                  <label className="ui left aligned header">Email</label>
-                  <div className="ui left icon input">
-                    <i className="envelope icon" />
-                    <input name="email" type="email" placeholder="E-mail address" onChange={this.handlechange}/>                  </div>
+                    <label className="ui left aligned header">Email</label>
+                    <div className="ui left icon input">
+                        <i className="envelope icon" />
+                        <input name="email" type="email" placeholder="E-mail address" onChange={this.handlechange}/>
+                    </div>
                 </div>
                 <div className="field inverted segment">
                 <label className="ui left aligned header">Password</label>
                 <div className="ui left icon input">
                     <i className="lock icon" />
                     <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    onChange={this.handlechange}
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        onChange={this.handlechange}
                     />
                 </div>
                 </div>
