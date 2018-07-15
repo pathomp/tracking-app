@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
 import ObjectInfo from '../components/ObjectInfo'
-import MapContainer from '../containers/MapContainer'
-<<<<<<< HEAD
-// import { GoogleApiWrapper } from 'google-maps-react'
-=======
->>>>>>> 42f7df8f2585157d826535ef3e3c7de7d975fcb8
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
 import { Dropdown,Button, Icon } from 'semantic-ui-react'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
@@ -149,7 +144,7 @@ class MapSearch extends Component {
                                 </table>
                         {/* </div> */}
                         <ObjectInfo name={this.state.dname} imei={this.state.imei} speed={this.state.dspeed}  />
-                        <MapContainer imei={this.state.imei} google={this.props.google} />
+                        {/* <MapContainer imei={this.state.imei} google={this.props.google} /> */}
                     </div>
                     </TabPanel> 
 
@@ -194,14 +189,6 @@ MapSearch.defaultProps = {
     dspeed : null,
     value: null,
     selectedDays: null
-<<<<<<< HEAD
-};
-export default MapSearch
-// export default GoogleApiWrapper({
-//     apiKey: 'AIzaSyBl0GHG6VgXjjS8AR45DGMCmHt4E-jhgDk',
-// })(MapSearch)
-=======
 }
 export default MapSearch
->>>>>>> 42f7df8f2585157d826535ef3e3c7de7d975fcb8
 

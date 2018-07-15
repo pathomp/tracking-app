@@ -1,4 +1,4 @@
-const express = require("express")
+const express = require('express')
 const path = require('path')
 
 const app = express()
@@ -10,6 +10,13 @@ app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server started at port: ${port}`);
 });
+
+process.on('SIGINT', function(code) {  
+  console.log('Server stoped')
+  server.close();
+});
+
+

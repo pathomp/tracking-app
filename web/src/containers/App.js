@@ -18,15 +18,10 @@ class App extends Component {
          {/* <section > */}
             {/* <div> */}
               <Switch>
-<<<<<<< HEAD
-                <Route exact path="/" component={HomeHeader}/>
-                <Route style={box} path="/home" component={Home} />
-=======
                 <Route exact path="/" component={HomePage}/>
                 <Route path="/home" component={Home} />
                 <Route path="/setting" component={AddCar}/>
                 <Route path="/check" component={notification}/>
->>>>>>> 42f7df8f2585157d826535ef3e3c7de7d975fcb8
               </Switch>
             {/* </div> */}
           {/* </section>  */}

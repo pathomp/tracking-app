@@ -1,21 +1,8 @@
 import React, { Component } from 'react'
-<<<<<<< HEAD
-// import { GoogleApiWrapper } from 'google-maps-react'
-// import MapContainer from './MapContainer'
-// import Search from '../components/MapSearch'
-import Footer from './../components/footer';
-import Map from '../components/Map/Map';
-
-class Home extends Component {
-    constructor(){
-        super()
-    }
-    render() {
-=======
-import { GoogleApiWrapper } from 'google-maps-react'
-import MapContainer from './MapContainer'
 import Search from '../components/MapSearch'
 import Footer from './../components/footer'
+import Map from '../components/Map/Map'
+
 class Home extends Component {
     componentWillReceiveProps = (props) =>{
         this.setState({visible:props.visible})
@@ -25,7 +12,6 @@ class Home extends Component {
         const box = {
             marginTop: "1rem"
         }
->>>>>>> 42f7df8f2585157d826535ef3e3c7de7d975fcb8
         const style = {
             "backgroundColor": "#ebebe0", //#F5F5DC #F5F5F5  ebebe0 f5f5f0
             paddingTop: "1em",
@@ -56,29 +42,18 @@ class Home extends Component {
             "width": "100vw"
         }
         return (
-<<<<<<< HEAD
-             <div>
-                <div className="ui grid">
-                    <div className="row" style={style}>
-                        <div className="four wide column">
-                            {/* <Search onFilter={this.onFilter} /> */}
-                        </div>
-                        <div className="twelve wide column">
-                            <div style={{ height: '100vh', width: '100%' }}>
-                                <Map />
-                            </div>
-=======
             <div style={box}>
                 <div className="ui stackable two column grid" style={style}>
                         <div className="four wide column"> 
-                            <Search onFilter={this.onFilter} />
+                            {/* <Search onFilter={this.onFilter} /> */}
                         </div>
                         <div className="twelve wide column" style={styleMap}>                    
-                            <MapContainer google={this.props.google}/>                      
+                        <div style={{ height: '100vh', width: '100%' }}>
+                                <Map />
+                            </div>                 
                         </div>
                         <div>
                             <Footer/>
->>>>>>> 42f7df8f2585157d826535ef3e3c7de7d975fcb8
                         </div>
                 </div>
             </div>

@@ -1,27 +1,40 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import GoogleMapReact from 'google-map-react'
 import SimpleMarker from '../Markers/SimpleMarker'
-import { bangkokCoords, generateMarkers } from '../../data/fakeData'
 
-export default class DonationMap extends Component {
+const bangkokCoords = { lat: 13.736717, lng: 100.523186 };
+
+export default class Map extends Component {
     constructor(props){
         super()
         this.state = {
             latLongs: []
         }
-        this.updateMarker = this.updateMarker.bind(this)
+        this.getMarker = this.getMarker.bind(this)
     }
 
     componentDidMount() {
-        let timer = setInterval(this.updateMarker, 10000);
-        this.updateMarker()
+        this.timer = setInterval(this.getMarker, 30000);
+        this.getMarker();
     }
 
-    updateMarker() {
-        const random = Math.floor(Math.random() * 10)  + 1
-        this.setState({
-            latLongs: generateMarkers(random)
-        })
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
+
+
+    getMarker = () => {
+        // http://localhost:5000/api/v1/objects
+        axios.get('http://192.168.99.100:8080/objects')
+            .then(response =>{
+                this.setState({
+                    latLongs: response.data
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
@@ -34,7 +47,7 @@ export default class DonationMap extends Component {
                 defaultZoom={6}
             >
             {this.state.latLongs.map(place => (
-                <SimpleMarker key={place.id} text={place.id} lat={place.lat} lng={place.lng}/>
+                <SimpleMarker key={place.imei} text={place.object_data.speed} lat={place.object_data.geometry.coordinates[1]} lng={place.object_data.geometry.coordinates[0]}/>
             ))}
             </GoogleMapReact>
         )

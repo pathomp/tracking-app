@@ -14,7 +14,6 @@ module.exports = {
         }
     },
     tokenSettings: {
-        privateKey: 'cat4dog',
-        tokenExpiry: 60 * 60
+        privateKey: process.env.TOKEN_KEY || 'cat4dog'
     }
 }
