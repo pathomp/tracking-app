@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ObjectInfo from '../components/ObjectInfo'
-import MapContainer from '../containers/MapContainer'
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs'
 import { Dropdown,Button, Icon } from 'semantic-ui-react'
 import DayPickerInput from 'react-day-picker/DayPickerInput'
@@ -145,7 +144,7 @@ class MapSearch extends Component {
                                 </table>
                         {/* </div> */}
                         <ObjectInfo name={this.state.dname} imei={this.state.imei} speed={this.state.dspeed}  />
-                        <MapContainer imei={this.state.imei} google={this.props.google} />
+                        {/* <MapContainer imei={this.state.imei} google={this.props.google} /> */}
                     </div>
                     </TabPanel> 
 

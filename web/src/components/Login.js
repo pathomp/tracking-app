@@ -14,7 +14,7 @@ class Login extends Component {
         e.preventDefault()
 
         //http://localhost:5000/api/v1/users  http://10.195.2.131/auth/basic
-        fetch('http://138.197.72.169:3000/auth/basic',{
+        fetch('http://192.168.99.100:8080/auth/basic',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

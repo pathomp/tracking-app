@@ -1,6 +1,6 @@
 const errors = require('restify-errors');
 const Data = require('../models/data')
-const axios = require('axios')
+const services = require('../services')
 
 module.exports = (server) => {
 
@@ -19,7 +19,7 @@ module.exports = (server) => {
         async function findData(imei) {
             let datum
             try{
-                datum = await Data.findOne({'imei':imei})
+                datum = await Data.find({'imei':imei})
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)
@@ -48,16 +48,10 @@ module.exports = (server) => {
                     ]
                 },
                 "speed" : data.SPEED,
-                "imei" : imei
             }
             try{
                 datum = await Data.create(input_datum)
-                // const response = await axios({
-                //     method: 'POST',
-                //     url: 'http://localhost:3001/illegal/OverSpeed/',
-                //     data: datum
-                // });
-
+                object = await services.objectsService(imei,datum)
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)

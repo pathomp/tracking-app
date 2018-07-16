@@ -10,15 +10,23 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - NODE_ENV=Production
+      - NODE_ENV=development
+      - DB_SERVER=209.97.162.212:27017
+  
+  objects:
+    build: './objects'
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=development
       - DB_SERVER=209.97.162.212:27017
 
   data:
     build: './data'
     ports:
-      - "3002:3000"
+      - "3003:3000"
     environment:
-      - NODE_ENV=Production
+      - NODE_ENV=development
       - DB_SERVER=209.97.162.212:27017
 
   nginx:
@@ -31,4 +39,5 @@ services:
     depends_on:
       - web
       - auth
+      - objects
       - data

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { GoogleApiWrapper } from 'google-maps-react'
-import MapContainer from './MapContainer'
 import Search from '../components/MapSearch'
 import Footer from './../components/footer'
+import Map from '../components/Map/Map'
+
 class Home extends Component {
     componentWillReceiveProps = (props) =>{
         this.setState({visible:props.visible})
@@ -34,14 +34,23 @@ class Home extends Component {
             width: '100%', 
             height: '86vh'
         }
+        const layout = {
+            "display": "flex",
+            "minHeight": "90vh",
+            "flexDirection": "column",
+            "margin": "0 1px 0 1px",
+            "width": "100vw"
+        }
         return (
             <div style={box}>
                 <div className="ui stackable two column grid" style={style}>
                         <div className="four wide column"> 
-                            <Search onFilter={this.onFilter} />
+                            {/* <Search onFilter={this.onFilter} /> */}
                         </div>
                         <div className="twelve wide column" style={styleMap}>                    
-                            <MapContainer google={this.props.google}/>                      
+                        <div style={{ height: '100vh', width: '100%' }}>
+                                <Map />
+                            </div>                 
                         </div>
                         <div>
                             <Footer/>
@@ -52,6 +61,4 @@ class Home extends Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBl0GHG6VgXjjS8AR45DGMCmHt4E-jhgDk',
-})(Home)
+export default Home
