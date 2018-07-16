@@ -31,6 +31,7 @@ module.exports = (server) => {
     })
 
     server.post('/data/:imei', (req, res, next) => {
+        
         if (!req.params.imei){
             res.send(400, {"message" : "Need imei to create data"})
         }
@@ -39,7 +40,7 @@ module.exports = (server) => {
         let data = req.body || {}
 
         async function createData(data) {
-            let datum
+            let datum, illegals, object
             let input_datum = {
                 "geometry": {
                     "coordinates" : [
@@ -47,11 +48,13 @@ module.exports = (server) => {
                         data.LAT
                     ]
                 },
+                "imei" : imei,
                 "speed" : data.SPEED,
             }
             try{
                 datum = await Data.create(input_datum)
-                object = await services.objectsService(imei,datum)
+                // illegals = await services.illegalsService(datum)
+                object = await services.objectsService(imei,datum) 
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)

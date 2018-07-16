@@ -6,14 +6,11 @@ const moment = require('moment')
 
 module.exports = (server) => {
 
-    server.get('/illegal/test/', (req, res, next) => {
-
-        // let data = req.body || {}
-
+    server.get('/illegals/test', (req, res, next) => {
         res.send(201, "OK")
     })
 
-    server.post('/illegal/OverSpeed/', (req, res, next) => {
+    server.post('/illegals/OverSpeed', (req, res, next) => {
 
         let overspeed
         let type = 1
@@ -88,7 +85,7 @@ module.exports = (server) => {
     })
 
 
-    server.post('/illegal/RegistDrive/', (req, res, next) => {
+    server.post('/illegals/RegistDrive', (req, res, next) => {
 
         let data = req.body || {}
 
@@ -124,7 +121,7 @@ module.exports = (server) => {
         registDriver(data)
     })
 
-    server.get('/illegal/CheckDriveTime/:driver_lic', (req, res, next) => {
+    server.get('/illegals/CheckDriveTime/:driver_lic', (req, res, next) => {
 
         let lic = req.params.driver_lic
 
@@ -171,9 +168,5 @@ module.exports = (server) => {
         }
 
         checkTime(lic)
-    })
-
-    server.listen(3000, function () {
-        console.log(`Server start`)
     })
 }

@@ -1,10 +1,10 @@
 
 module.exports = {
-    name: 'Illigal Service',
+    name: 'Illegals',
     version: '1.0.0',
     env: process.env.NODE_ENV || 'development',
     serverSettings: {
-        port: process.env.PORT || 3001
+        port: process.env.PORT || 3000
     },
     dbSettings: {
         db: process.env.DB || 'tracking',
@@ -14,7 +14,6 @@ module.exports = {
         }
     },
     tokenSettings: {
-        privateKey: 'cat4dog',
-        tokenExpiry: 60 * 60
+        privateKey: process.env.TOKEN_KEY || 'cat4dog'
     }
 }

@@ -29,6 +29,14 @@ services:
       - NODE_ENV=development
       - DB_SERVER=209.97.162.212:27017
 
+  illegals:
+    build: './illegals'
+    ports:
+      - "3004:3000"
+    environment:
+      - NODE_ENV=development
+      - DB_SERVER=209.97.162.212:27017
+
   nginx:
     image: nginx:latest
     ports:
@@ -41,3 +49,4 @@ services:
       - auth
       - objects
       - data
+      - illegals

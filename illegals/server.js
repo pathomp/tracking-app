@@ -1,21 +1,55 @@
 const restify = require('restify')
-const logger = require('morgan')
 const mongoose = require('mongoose')
+const logger = require('morgan')
 const config = require('./config')
+const jwt = require('jsonwebtoken') 
+const corsMiddleware = require('restify-cors-middleware')
+
+const isAuthenticated = (req, res, next) => {
+
+    if(config.env != 'production') {
+        return next()
+    }
+
+    const authorization = req.headers.authorization
+    if (!authorization || !(authorization.search('Bearer ') === 0)) {
+        return next(new Error('Missing Authorization Header'))
+    }
+
+    const token = authorization.split(' ')[1]
+    if (!token) {
+        return next(new Error('Missing Bearer Token'))
+    }
+
+    jwt.verify(token, config.tokenSettings.privateKey, function(err, decoded) {
+        if (err) {
+            return next(new Error('Invalid Access Token'))
+        }
+        next()
+    })
+}
 
 const server = restify.createServer({
-    name: 'illegals',
-    version: '1.0.0'
+    name: config.name,
+    version: config.version
+})
+
+const cors = corsMiddleware({
+    origins: ['*'],
+    allowHeaders: ['Content-Type','Content-Length','Authorization'],
 })
 
 server.use(logger('dev'))
+server.pre(cors.preflight)
+server.use(cors.actual)
+server.use(isAuthenticated)
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 server.listen(config.serverSettings.port, () => {
-    console.log('---Auth Service ---')
-    console.log('Connecting to auth repository...')
+    console.log(`---${config.name} Service ---`)
+    console.log(`Connecting to ${config.name} repository...`)
     mongoose.Promise = global.Promise
     mongoose.connect(config.dbSettings.url)
 
@@ -32,3 +66,6 @@ server.listen(config.serverSettings.port, () => {
         console.log(`Server started succesfully, running on port: ${config.serverSettings.port}.`)
     })
 })
+
+module.exports = server
+
