@@ -26,11 +26,9 @@ module.exports = (server) => {
             let alarmcheck
             try {
 
-                if (data.type == 1 && data.speed > 60) {
+                if (data.speed > 60) {
                     overspeed = 1
-                } else if (data.type == 2 && data.speed > 80) {
-                    overspeed = 1
-                } else {
+                }else {
                     overspeed = 0
                 }
 
@@ -38,7 +36,7 @@ module.exports = (server) => {
 
                     datum = await Overspeed.findOne({ imei: data.imei })
                     if (!datum) {
-                        await Overspeed.create({ gps_id: data.imei, start_time: data.ts.substring(0,data.ts.length-1), type:type, speed: data.speed })
+                        await Overspeed.create({ imei: data.imei, start_time: data.ts.substring(0,data.ts.length-1), type:type, speed: data.speed })
                         res.send(201, "Register new Overspeed")
                     } else {
 
@@ -65,7 +63,7 @@ module.exports = (server) => {
 
                         } else if (diffDuration.asMinutes() < 2 && diffDuration.asMinutes() >= 0) {
 
-                            res.send(201, datum.gps_id + " Update Overspeed")
+                            res.send(201, datum.imei + " Update Overspeed")
 
                         } else {
                             await Overspeed.findOneAndUpdate({ imei: data.imei }, { start_time: data.ts.substring(0,data.ts.length-1) })
