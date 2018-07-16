@@ -54,7 +54,7 @@ module.exports = (server) => {
             try{
                 datum = await Data.create(input_datum)
                 // illegals = await services.illegalsService(datum)
-                object = await services.objectsService(imei,datum) 
+                object = await services.objectsService(imei,datum)
                 res.send(201, datum)
             }catch(err) {
                 console.error(err)
