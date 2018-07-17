@@ -2,8 +2,28 @@ import React, { Component } from 'react'
 import Search from '../components/MapSearch'
 import Footer from './../components/footer'
 import Map from '../components/Map/Map'
+import axios from 'axios'
 
 class Home extends Component {
+    constructor(){
+        super()
+        this.state = {
+            objects : []
+        }
+    }
+
+    componentDidMount = () => {
+        axios.get('http://10.195.2.163:3002/objects') //http://localhost:5000/api/v1/objects   
+            .then(response =>{
+                this.setState({
+                    objects: response.data
+                })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     componentWillReceiveProps = (props) =>{
         this.setState({visible:props.visible})
     }
@@ -45,11 +65,11 @@ class Home extends Component {
             <div style={box}>
                 <div className="ui stackable two column grid" style={style}>
                         <div className="four wide column"> 
-                            {/* <Search onFilter={this.onFilter} /> */}
+                            <Search onFilter={this.onFilter} objects={this.state.objects}/>
                         </div>
                         <div className="twelve wide column" style={styleMap}>                    
-                        <div style={{ height: '100vh', width: '100%' }}>
-                                <Map />
+                        <div style={{ height: '100%', width: '100%' }}>
+                                <Map objects={this.state.objects}/>
                             </div>                 
                         </div>
                         <div>
