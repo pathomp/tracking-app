@@ -17,7 +17,7 @@ const DataSchema = new mongoose.Schema({
         ENGINE_STAT : Number,
         HEADING : Number,
         SAT_NO : Number,
-        RSSIT : Number
+        RSSI : Number
 },{ collection: 'data'})
 
 DataSchema.plugin(uniqueValidator, {message: 'is already taken.'});
