@@ -26,12 +26,16 @@ class MapSearch extends Component {
         this.selectCar = this.selectCar.bind(this)
     }
 
-    componentDidMount() {
-        fetch('http://localhost:5000/api/v1/objects') //http://10.195.2.131:3222/objedts --- http://localhost:5000/api/v1/objects
-            .then((response) => response.json())
-            .then(json => {
-                this.setState({ objects: json })
-            });
+    // componentDidMount() {
+    //     fetch('http://localhost:5000/api/v1/objects') //http://10.195.2.131:3222/objedts --- http://localhost:5000/api/v1/objects
+    //         .then((response) => response.json())
+    //         .then(json => {
+    //             this.setState({ objects: json })
+    //         });
+    // }
+
+    componentWillReceiveProps(props){
+        this.setState({ objects: props.objects })
     }
 
     filterList = (e) => {

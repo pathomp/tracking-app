@@ -11,12 +11,16 @@ export default class Map extends Component {
         this.state = {
             latLongs: []
         }
-        this.getMarker = this.getMarker.bind(this)
+        // this.getMarker = this.getMarker.bind(this)
     }
 
-    componentDidMount() {
-        this.timer = setInterval(this.getMarker, 30000);
-        this.getMarker();
+    // componentDidMount() {
+    //     this.timer = setInterval(this.getMarker, 30000);
+    //     this.getMarker();
+    // }
+
+    componentWillReceiveProps(props){
+        this.setState({latLongs:props.objects})
     }
 
     componentWillUnmount() {
@@ -24,18 +28,18 @@ export default class Map extends Component {
     }
 
 
-    getMarker = () => {
-        // http://localhost:5000/api/v1/objects
-        axios.get('http://192.168.99.100:8080/objects')
-            .then(response =>{
-                this.setState({
-                    latLongs: response.data
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+    // getMarker = () => {
+    //     // http://localhost:5000/api/v1/objects
+    //     axios.get('http://192.168.99.100:8080/objects')
+    //         .then(response =>{
+    //             this.setState({
+    //                 latLongs: response.data
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
+    // }
 
     render() {
         return (
