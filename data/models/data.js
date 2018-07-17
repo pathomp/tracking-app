@@ -9,8 +9,8 @@ const DataSchema = new mongoose.Schema({
             coordinates: []
         },
         DB_TIME : { type: Date, default: Date.now},
-        GPS_TIME : { type: Date, default: Date.now},
-        VENDOR_TIME : { type: Date, default: Date.now},
+        GPS_TIME : String,
+        VENDOR_TIME : String,
         SPEED : Number,
         IMEI : String,
         VENDOR_ID : Number,
