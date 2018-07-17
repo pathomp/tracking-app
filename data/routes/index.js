@@ -48,8 +48,15 @@ module.exports = (server) => {
                         data.LAT
                     ]
                 },
-                "imei" : imei,
-                "speed" : data.SPEED,
+                "GPS_TIME" : data.GPS_TIME,
+                "VENDOR_TIME" : data.VENDOR_TIME,
+                "SPEED" : data.SPEED,
+                "IMEI" : data.IMEI,
+                "VENDOR_ID" : data.VENDOR_ID,
+                "ENGINE" : data.ENGINE,
+                "HEADING" : data.HEADING,
+                "SAT_NO" : data.SAT_NO,
+                "RSSI" : data.RSSI
             }
             try{
                 datum = await Data.create(input_datum)

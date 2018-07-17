@@ -8,10 +8,16 @@ const DataSchema = new mongoose.Schema({
             type : { type: String, default: 'Point'},
             coordinates: []
         },
-        ts : { type: Date, default: Date.now},
-        speed : Number,
-        imei : String,
-        type : Number
+        DB_TIME : { type: Date, default: Date.now},
+        GPS_TIME : { type: Date, default: Date.now},
+        VENDOR_TIME : { type: Date, default: Date.now},
+        SPEED : Number,
+        IMEI : String,
+        VENDOR_ID : Number,
+        ENGINE : Number,
+        HEADING : Number,
+        SAT_NO : Number,
+        RSSIT : Number
 },{ collection: 'data'})
 
 DataSchema.plugin(uniqueValidator, {message: 'is already taken.'});
