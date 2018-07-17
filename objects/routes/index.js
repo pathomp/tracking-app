@@ -82,7 +82,7 @@ module.exports = (server) => {
                     VENDOR_TIME : data.VENDOR_TIME,
                     IMEI : data.IMEI,
                     VENDOR_ID : data.VENDOR_ID,
-                    ENGINE : data.ENGINE,
+                    ENGINE_STAT : data.ENGINE_STAT,
                     SPEED: data.SPEED,
                     HEADING : data.HEADING,
                     SAT_NO : data.SAT_NO,

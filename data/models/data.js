@@ -14,7 +14,7 @@ const DataSchema = new mongoose.Schema({
         SPEED : Number,
         IMEI : String,
         VENDOR_ID : Number,
-        ENGINE : Number,
+        ENGINE_STAT : Number,
         HEADING : Number,
         SAT_NO : Number,
         RSSIT : Number

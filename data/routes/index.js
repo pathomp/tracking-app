@@ -53,7 +53,7 @@ module.exports = (server) => {
                 "SPEED" : data.SPEED,
                 "IMEI" : data.IMEI,
                 "VENDOR_ID" : data.VENDOR_ID,
-                "ENGINE" : data.ENGINE,
+                "ENGINE_STAT" : data.ENGINE_STAT,
                 "HEADING" : data.HEADING,
                 "SAT_NO" : data.SAT_NO,
                 "RSSI" : data.RSSI
